@@ -104,8 +104,21 @@
             {{ctrl.detail.desc}}
         </p>
         <p>
-            <md-icon md-svg-icon="{{ctrl.detail.coverSvg}}"></md-icon>
-            {{ctrl.detail.coverTxt}}
+            <div ng-if="ctrl.detail.isCovered">
+            <md-icon md-svg-icon="ok"></md-icon>
+            Vous êtes couvert pour ce sinistre par le(s) contrat(s) suivant(s) :
+                <ul>
+                    <li ng-repeat="contract in ctrl.detail.contracts">{{contract}}</li>
+                </ul>
+                Conditions de couverture :
+                <ul>
+                    <li>Franchise : CHF {{ctrl.detail.franchiseAmount}}</li>
+                </ul>
+            </div>
+            <div ng-if="!ctrl.detail.isCovered">
+                <md-icon md-svg-icon="notok"></md-icon>
+                Vous n'êtes pas couvert pour ce sinistre.
+            </div>
         </p>
 
         <md-button md-no-ink ng-click="ul.makeContact(ctrl.detail)">
@@ -149,6 +162,8 @@
                         .icon("summary", "./assets/svg/summary.svg", 512)
                         .icon("choose", "./assets/svg/choose.svg", 512)
                         .icon("quiz", "./assets/svg/quiz.svg", 512)
+                        .icon("ok", "./assets/svg/ok.svg", 512)
+                        .icon("notok", "./assets/svg/notok.svg", 512)
 
                 ;
 

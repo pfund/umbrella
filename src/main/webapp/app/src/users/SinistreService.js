@@ -19,7 +19,7 @@
       {'name':'Incendie choses spéciales', 'type' : 'dommages'},
       {'name':'Dommages corporels et matériels CB/RS', 'type' : 'dommages'},
       {'name':'Dommages naturels', 'type' : 'dommages'},
-      {'name':'Dommages au véhicule parqué', 'type' : 'dommages'},
+      {'name':'Dommages au véhicule parqué', 'type' : 'dommages', coveredForUser1 : false},
       {'name':'Choses transportées', 'type' : 'dommages'},
       {'name':'Dégâts d\'eau', 'type' : 'dommages'},
       {'name':'Dommages corporels/matériels industrie hôtelière', 'type' : 'dommages'},
@@ -32,7 +32,7 @@
       {'name':'Bris de vitrages du bâtiment', 'type' : 'dommages'},
       {'name':'Bris de vitrages du mobilier', 'type' : 'dommages'},
       {'name':'Risque spécial dommages naturels', 'type' : 'dommages'},
-      {'name':'Vol avec effraction', 'type' : 'vol'},
+      {'name':'Vol avec effraction', 'desc' : 'Le vol avec effraction implique deux conditions : le voleur doit avoir pénétré avec effraction (dans votre habitation ou votre voiture) et avoir emporté quelque chose.', 'type' : 'vol', coveredForUser1 : true, franchiseAmountForUser1 : 500, contractForUser1 : [123456789, 987456321]},
       {'name':'Bagages', 'type' : 'vol'},
       {'name':'Vol simple hors du domicile', 'type' : 'vol'},
       {'name':'Vêtements et casque de moto', 'type' : 'vol'},
@@ -47,7 +47,7 @@
     var noCoverTxt = "Vous n'êtes pas couvert!";
 
     return {
-      getSinistre: function(id) {
+      getSinistre: function(sinistre) {
         //var deferred = $q.defer();
         //$timeout(function () { deferred.resolve( {
         //  "id": id,
@@ -58,31 +58,13 @@
         //return deferred.promise;
 
         var ret;
-        if (id == 'Vol de vélo') {
+
           ret = {
-            "desc": "Le vol de vélo... c'est mal",
-            "coverSvg": "cover",
-            "coverTxt": coverTxt
+            "desc": sinistre.desc,
+            "isCovered": sinistre.coveredForUser1,
+            "contracts": sinistre.contractForUser1,
+            "franchiseAmount": sinistre.franchiseAmountForUser1
           }
-        } else if (id == "Cambriolage") {
-          ret = {
-            "desc": "Le cambriolage... c'est mal aussi",
-            "coverSvg": "noCover",
-            "coverTxt": noCoverTxt
-          }
-        } else if (id == "Fuite de robinet") {
-          ret = {
-            "desc": "L'eau c'est bien... mais pas trop",
-            "coverSvg": "halfCover",
-            "coverTxt": halfCoverTxt
-          }
-        } else {
-          ret = {
-            "desc": "J'ai pas tout prévu non plus...",
-            "coverSvg": "halfCover",
-            "coverTxt": halfCoverTxt
-          }
-        }
 
         return $timeout(function () {
           return ret;

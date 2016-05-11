@@ -125,7 +125,7 @@
         function selectedItemChange(item) {
             self.detail = undefined;
             if (item) {
-                sinistreService.getSinistre(item.name).then(function (result) {
+                sinistreService.getSinistre(item).then(function (result) {
                         self.detail = result;
                     }
                 );
