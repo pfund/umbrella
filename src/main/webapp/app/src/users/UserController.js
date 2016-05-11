@@ -153,7 +153,13 @@
             var normalized = angular.lowercase(query);
             normalized = removeAccents(normalized)
             return function filterFn(item) {
-                return (item.normalized.indexOf(normalized) != -1);
+                var splitted = normalized.split(" ");
+                for (var i = 0; i<splitted.length; i++) {
+                    if (item.normalized.indexOf(splitted[i]) == -1) {
+                        return false;
+                    }
+                }
+                return true;
             };
         }
 
