@@ -25,49 +25,33 @@
 
   <body ng-app="starterApp" layout="row" ng-controller="UserController as ul" ng-cloak >
 
-  <md-sidenav class="site-sidenav md-sidenav-left md-whiteframe-z2"
-      md-component-id="left"
-      ng-click="ul.toggleList()" aria-label="Show User List"
-      md-is-locked-open="$mdMedia('gt-sm')">
-
-    <md-toolbar class="md-whiteframe-z1">
-      <h3>Menu</h3>
-    </md-toolbar>
-
-    <md-list>
-        <md-list-item>
-            <md-button ng-class="" href="/resume/app/index.html">
-                <md-icon md-svg-icon="summary" class="avatar"></md-icon>
-                {{'Résumé' | uppercase}}
-            </md-button>
-        </md-list-item>
-        <md-list-item>
-            <md-button ng-class="'selected'" href="/material-start/app/index.html">
-                <md-icon md-svg-icon="choose" class="avatar"></md-icon>
-                {{'Est-ce que je suis couvert' | uppercase}}
-            </md-button>
-        </md-list-item>
-        <md-list-item>
-            <md-button ng-class="" href="/quiz/app/index.html">
-                <md-icon md-svg-icon="quiz" class="avatar"></md-icon>
-                {{'Quiz' | uppercase}}
-            </md-button>
-        </md-list-item>
-    </md-list>
-
-  </md-sidenav>
-
-
   <div ng-controller="DemoCtrl as ctrl" flex layout="column" tabIndex="-1" role="main" class="md-whiteframe-z2">
 
-    <md-toolbar layout="row" class="md-whiteframe-z1">
-      <md-button id="main" class="menu" hide-gt-sm ng-click="ul.toggleList()" aria-label="Show User List">
-        <md-icon md-svg-icon="menu" ></md-icon>
-      </md-button>
-      <h3>Mobilière - Umbrella</h3>
+    <md-toolbar layout="row" layout-align="end" class="md-whiteframe-z1">
+        <md-list layout="row">
+            <md-list-item>
+                <md-button ng-class="selected" href="../app/index.html">
+                    {{'Sinistres' | uppercase}}
+                </md-button>
+            </md-list-item>
+            <md-list-item>
+                <md-button ng-class="" href="../../resume/app/index.html">
+                    {{'Mes contrats' | uppercase}}
+                </md-button>
+            </md-list-item>
+            <md-list-item>
+                <md-button ng-class="" href="/quiz/app/index.html">
+                    {{'Quiz' | uppercase}}
+                </md-button>
+            </md-list-item>
+        </md-list>
     </md-toolbar>
 
       <div layout="column" ng-cloak>
+          <md-content layout="row" layout-align="center">
+              <img ng-src="assets/img/logo.png" height="120px">
+          </md-content>
+
           <md-content layout-padding layout="column">
               <form ng-submit="$event.preventDefault()">
                   <p>Choisir un sinistre</p>
@@ -167,7 +151,7 @@
                   ;
 
                       $mdThemingProvider.theme('default')
-                          .primaryPalette('brown')
+                          .primaryPalette('grey')
                           .accentPalette('red');
 
               });

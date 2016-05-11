@@ -14,38 +14,31 @@
    */
   function SinistreService($q, $timeout){
     var sinistres = [
-      {
-        'name'      : 'Vol de vélo',
-        'type'      : 'home'
-      },
-      {
-        'name'      : 'Vol de téléphone portable',
-        'type'      : 'home'
-      },
-      {
-        'name'      : 'Voiture endommagée dans un parking',
-        'type'      : 'voiture'
-      },
-      {
-        'name'      : 'Fuite de robinet',
-        'type'      : 'home'
-      },
-      {
-        'name'      : "J'ai cassé le bras de mon ami",
-        'type'      : 'home'
-      },
-      {
-        'name'      : "Cambriolage",
-        'type'      : 'home'
-      },
-      {
-        'name'      : "Je dois annuler mon voyage à l'étranger",
-        'type'      : 'voyage'
-      },
-      {
-        'name'      : "Je voudrais un traitement non pris en charge par l'assurance lamal",
-        'type'      : 'ambulance'
-      }
+      {'name':'Dommages corp./matériels entrepr. du bâtiment', 'type' : 'dommages'},
+      {'name':'Incendie', 'type' : 'dommages'},
+      {'name':'Incendie choses spéciales', 'type' : 'dommages'},
+      {'name':'Dommages corporels et matériels CB/RS', 'type' : 'dommages'},
+      {'name':'Dommages naturels', 'type' : 'dommages'},
+      {'name':'Dommages au véhicule parqué', 'type' : 'dommages'},
+      {'name':'Choses transportées', 'type' : 'dommages'},
+      {'name':'Dégâts d\'eau', 'type' : 'dommages'},
+      {'name':'Dommages corporels/matériels industrie hôtelière', 'type' : 'dommages'},
+      {'name':'Dommages corporels et matériels couverture de base', 'type' : 'dommages'},
+      {'name':'Eau', 'type' : 'dommages'},
+      {'name':'Dégâts d\'eau bâtiment et frais', 'type' : 'dommages'},
+      {'name':'Dommages naturels', 'type' : 'dommages'},
+      {'name':'PC, laptop, agenda électron., écrans plats, beamer: PC Apple', 'type' : 'dommages'},
+      {'name':'Détérioration de bagages', 'type' : 'dommages'},
+      {'name':'Bris de vitrages du bâtiment', 'type' : 'dommages'},
+      {'name':'Bris de vitrages du mobilier', 'type' : 'dommages'},
+      {'name':'Risque spécial dommages naturels', 'type' : 'dommages'},
+      {'name':'Vol avec effraction', 'type' : 'vol'},
+      {'name':'Bagages', 'type' : 'vol'},
+      {'name':'Vol simple hors du domicile', 'type' : 'vol'},
+      {'name':'Vêtements et casque de moto', 'type' : 'vol'},
+      {'name':'Vol simple au domicile', 'type' : 'vol'},
+      {'name':'Détroussement', 'type' : 'vol'},
+      {'name':'Vol avec effraction / détroussement', 'type' : 'vol'}
     ];
 
     // Promise-based API

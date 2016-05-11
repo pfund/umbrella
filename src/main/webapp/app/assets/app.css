@@ -26,10 +26,9 @@ md-icon.avatar {
   margin-right: 20px;
 }
 
-  md-list .md-button.selected {
+md-list .md-button.selected {
     color: #03a9f4;
-  }
-
+}
 
 button#main {
   margin-bottom: 10px;
