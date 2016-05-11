@@ -1,33 +1,43 @@
 <!DOCTYPE html>
-<html lang="en" >
-  <head>
-    <title>Angular Material - Starter App</title>
+<html lang="en">
+<head>
+    <title>Umbrella</title>
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="">
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no"/>
 
     <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic'>
     <link rel="stylesheet" href="../node_modules/angular-material/angular-material.css"/>
     <link rel="stylesheet" href="assets/app.css"/>
+
+    <script src="../node_modules/angular/angular.js"></script>
+    <script src="../node_modules/angular-animate/angular-animate.js"></script>
+    <script src="../node_modules/angular-aria/angular-aria.js"></script>
+    <script type="text/javascript" src="../node_modules/angular-material/angular-material.js"></script>
+
+    <script src="./src/users/Users.js"></script>
+    <script src="./src/users/UserController.js"></script>
+    <script src="./src/users/UserService.js"></script>
+    <script src="./src/users/SinistreService.js"></script>
 
     <style type="text/css">
         /**
          * Hide when Angular is not yet loaded and initialized
          */
         [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
-          display: none !important;
+            display: none !important;
         }
     </style>
 
-  </head>
+</head>
 
-  <body ng-app="starterApp" layout="row" ng-controller="UserController as ul" ng-cloak >
+<body ng-app="starterApp" layout="row" ng-controller="UserController as ul" ng-cloak>
 
-  <div ng-controller="DemoCtrl as ctrl" flex layout="column" tabIndex="-1" role="main" class="md-whiteframe-z2">
+<div ng-controller="DemoCtrl as ctrl" flex layout="column" tabIndex="-1" role="main" class="md-whiteframe-z2">
 
-    <md-toolbar layout="row" layout-align="end" class="md-whiteframe-z1">
+    <md-toolbar layout="row" layout-align="end" class="md-whiteframe-z1" style="background-color: #FFFFFF">
         <md-list layout="row">
             <md-list-item>
                 <md-button ng-class="selected" href="../app/index.html">
@@ -47,116 +57,107 @@
         </md-list>
     </md-toolbar>
 
-      <div layout="column" ng-cloak>
-          <md-content layout="row" layout-align="center">
-              <img ng-src="assets/img/logo.png" height="120px">
-          </md-content>
+    <div layout="column" ng-cloak>
+        <md-content layout="row" layout-align="center">
+            <img ng-src="assets/img/logo.png">
+        </md-content>
 
-          <md-content layout-padding layout="column">
-              <form ng-submit="$event.preventDefault()">
-                  <p>Choisir un sinistre</p>
-                  <md-autocomplete
-                          ng-disabled="ctrl.isDisabled"
-                          md-no-cache="ctrl.noCache"
-                          md-selected-item="ctrl.selectedItem"
-                          md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
-                          md-search-text="ctrl.searchText"
-                          md-selected-item-change="ctrl.selectedItemChange(item)"
-                          md-items="item in ctrl.querySearch(ctrl.searchText)"
-                          md-item-text="item.name"
-                          md-min-length="1"
-                          placeholder="Rechercher un sinistre"
-                          md-menu-class="autocomplete-custom-template"
-                          md-match-case-insensitive="true">
-                      <md-item-template>
+        <md-content layout-padding layout="column">
+            <form ng-submit="$event.preventDefault()">
+                <p>Choisir un sinistre</p>
+                <md-autocomplete
+                        ng-disabled="ctrl.isDisabled"
+                        md-no-cache="ctrl.noCache"
+                        md-selected-item="ctrl.selectedItem"
+                        md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
+                        md-search-text="ctrl.searchText"
+                        md-selected-item-change="ctrl.selectedItemChange(item)"
+                        md-items="item in ctrl.querySearch(ctrl.searchText)"
+                        md-item-text="item.name"
+                        md-min-length="1"
+                        placeholder="Rechercher un sinistre"
+                        md-menu-class="autocomplete-custom-template"
+                        md-match-case-insensitive="true">
+                    <md-item-template>
           <span class="item-title">
             <md-icon md-svg-icon="{{item.type}}"></md-icon>
           </span>
           <span class="item-content">
               <strong>{{item.name}}</strong>
           </span>
-                      </md-item-template>
-                  </md-autocomplete>
-              </form>
-          </md-content>
-      </div>
+                    </md-item-template>
+                </md-autocomplete>
+            </form>
+        </md-content>
+    </div>
 
     <md-content flex id="content" ng-show="ctrl.selectedItem">
 
 
         <h2>{{ctrl.selectedItem.name}}</h2>
-        <md-progress-circular md-mode="indeterminate" ng-show="ctrl.selectedItem && !ctrl.detail"></md-progress-circular>
+        <md-progress-circular md-mode="indeterminate"
+                              ng-show="ctrl.selectedItem && !ctrl.detail"></md-progress-circular>
 
         <span ng-if="ctrl.detail">
         <p>
             {{ctrl.detail.desc}}
         </p>
         <p>
-        <md-icon md-svg-icon="{{ctrl.detail.coverSvg}}"></md-icon>
-        {{ctrl.detail.coverTxt}}
+            <md-icon md-svg-icon="{{ctrl.detail.coverSvg}}"></md-icon>
+            {{ctrl.detail.coverTxt}}
         </p>
 
         <md-button md-no-ink ng-click="ul.makeContact(ctrl.detail)">
-          <md-tooltip>Compléter votre assurance</md-tooltip>
-          <md-icon md-svg-icon="{{ctrl.selectedItem.type}}"></md-icon>
+            <md-tooltip>Compléter votre assurance</md-tooltip>
+            <md-icon md-svg-icon="{{ctrl.selectedItem.type}}"></md-icon>
         </md-button>
 </span>
     </md-content>
 
-  </div>
+</div>
 
-    <script src="../node_modules/angular/angular.js"></script>
-    <script src="../node_modules/angular-animate/angular-animate.js"></script>
-    <script src="../node_modules/angular-aria/angular-aria.js"></script>
-    <script type="text/javascript" src="../node_modules/angular-material/angular-material.js"></script>
+<script type="text/javascript">
 
-    <script src="./src/users/Users.js"></script>
-    <script src="./src/users/UserController.js"></script>
-  <script src="./src/users/UserService.js"></script>
-  <script src="./src/users/SinistreService.js"></script>
+    angular
+            .module('starterApp', ['ngMaterial', 'users'])
+            .config(function ($mdThemingProvider, $mdIconProvider) {
 
-    <script type="text/javascript">
+                $mdIconProvider
+                        .defaultIconSet("./assets/svg/avatars.svg", 128)
+                        .icon("menu", "./assets/svg/menu.svg", 24)
+                        .icon("share", "./assets/svg/share.svg", 24)
+                        .icon("google_plus", "./assets/svg/google_plus.svg", 512)
+                        .icon("hangouts", "./assets/svg/hangouts.svg", 512)
+                        .icon("twitter", "./assets/svg/twitter.svg", 512)
+                        .icon("phone", "./assets/svg/phone.svg", 512)
 
-          angular
-              .module('starterApp', ['ngMaterial', 'users'])
-              .config(function($mdThemingProvider, $mdIconProvider){
+                        .icon("ambulance", "./assets/svg/assurances/ambulance.svg", 512)
+                        .icon("dommages", "./assets/svg/assurances/dommages.svg", 512)
+                        .icon("home", "./assets/svg/assurances/home.svg", 512)
+                        .icon("juridique", "./assets/svg/assurances/juridique.svg", 512)
+                        .icon("medical", "./assets/svg/assurances/medical.svg", 512)
+                        .icon("placement", "./assets/svg/assurances/placement.svg", 512)
+                        .icon("vie", "./assets/svg/assurances/vie.svg", 512)
+                        .icon("voiture", "./assets/svg/assurances/voiture.svg", 512)
+                        .icon("voyage", "./assets/svg/assurances/voyage.svg", 512)
 
-                  $mdIconProvider
-                      .defaultIconSet("./assets/svg/avatars.svg", 128)
-                      .icon("menu"       , "./assets/svg/menu.svg"        , 24)
-                      .icon("share"      , "./assets/svg/share.svg"       , 24)
-                      .icon("google_plus", "./assets/svg/google_plus.svg" , 512)
-                      .icon("hangouts"   , "./assets/svg/hangouts.svg"    , 512)
-                      .icon("twitter"    , "./assets/svg/twitter.svg"     , 512)
-                      .icon("phone"      , "./assets/svg/phone.svg"       , 512)
+                        .icon("cover", "./assets/svg/assurances/cover.svg", 512)
+                        .icon("halfCover", "./assets/svg/assurances/halfCover.svg", 512)
+                        .icon("noCover", "./assets/svg/assurances/noCover.svg", 512)
 
-                      .icon("ambulance"  , "./assets/svg/assurances/ambulance.svg", 512)
-                      .icon("brasCasse"  , "./assets/svg/assurances/brasCasse.svg", 512)
-                      .icon("home"       , "./assets/svg/assurances/home.svg"     , 512)
-                      .icon("juridique"  , "./assets/svg/assurances/juridique.svg", 512)
-                      .icon("medical"    , "./assets/svg/assurances/medical.svg"  , 512)
-                      .icon("placement"  , "./assets/svg/assurances/placement.svg", 512)
-                      .icon("vie"        , "./assets/svg/assurances/vie.svg"      , 512)
-                      .icon("voiture"    , "./assets/svg/assurances/voiture.svg"  , 512)
-                      .icon("voyage"     , "./assets/svg/assurances/voyage.svg"   , 512)
+                        .icon("summary", "./assets/svg/summary.svg", 512)
+                        .icon("choose", "./assets/svg/choose.svg", 512)
+                        .icon("quiz", "./assets/svg/quiz.svg", 512)
 
-                      .icon("cover"      , "./assets/svg/assurances/cover.svg"    , 512)
-                      .icon("halfCover"  , "./assets/svg/assurances/halfCover.svg", 512)
-                      .icon("noCover"    , "./assets/svg/assurances/noCover.svg"  , 512)
+                ;
 
-                          .icon("summary"    , "./assets/svg/summary.svg", 512)
-                          .icon("choose"    , "./assets/svg/choose.svg", 512)
-                          .icon("quiz"    , "./assets/svg/quiz.svg", 512)
+                $mdThemingProvider.theme('default')
+                        .primaryPalette('grey')
+                        .accentPalette('red');
 
-                  ;
+            });
 
-                      $mdThemingProvider.theme('default')
-                          .primaryPalette('grey')
-                          .accentPalette('red');
+</script>
 
-              });
-
-    </script>
-
-  </body>
+</body>
 </html>
