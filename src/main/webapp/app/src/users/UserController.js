@@ -151,7 +151,7 @@
          */
         function createFilterFor(query) {
             var normalized = angular.lowercase(query);
-            normalized = removeAccents(normalized)
+            normalized = removeAccents(normalized);
             return function filterFn(item) {
                 var splitted = normalized.split(" ");
                 for (var i = 0; i<splitted.length; i++) {
