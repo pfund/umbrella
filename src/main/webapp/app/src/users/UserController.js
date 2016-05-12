@@ -114,19 +114,20 @@
         }
 
         function searchTextChange(text) {
-            $log.info('Text changed to ' + text);
+            // $log.info('Text changed to ' + text);
         }
 
         function selectedItemChange(item) {
             self.detail = undefined;
             if (item) {
                 sinistreService.getSinistre(item).then(function (result) {
+                        document.getElementById("searchInput").blur();
                         self.detail = result;
                     }
                 );
             }
-            $log.info(JSON.stringify(self.detail));
-            $log.info('Item changed to ' + JSON.stringify(item));
+//            $log.info(JSON.stringify(self.detail));
+//            $log.info('Item changed to ' + JSON.stringify(item));
         }
 
         /**
