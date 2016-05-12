@@ -1,106 +1,60 @@
-(function(){
+(function () {
 
-  angular
-       .module('users')
-       .controller('UserController', [
-          'userService', '$mdSidenav', '$mdBottomSheet', '$log', '$q',
-          UserController
-       ])
-      .controller('DemoCtrl', [
-          'sinistreService', '$timeout', '$q', '$log',
-          DemoCtrl
-      ]);
-  ;
+    angular
+        .module('users')
+        .controller('SinistreController', [
+            'sinistreService', '$mdSidenav', '$mdBottomSheet', '$log', '$q',
+            SinistreController
+        ])
+        .controller('DemoCtrl', [
+            'sinistreService', '$timeout', '$q', '$log',
+            DemoCtrl
+        ]);
+    ;
 
-  /**
-   * Main Controller for the Angular Material Starter App
-   * @param $scope
-   * @param $mdSidenav
-   * @param avatarsService
-   * @constructor
-   */
-  function UserController( userService, $mdSidenav, $mdBottomSheet, $log) {
-    var self = this;
+    function SinistreController(sinistreService, $mdSidenav, $mdBottomSheet, $log) {
+        var self = this;
 
-    self.selected     = null;
-    self.users        = [ ];
-    self.selectUser   = selectUser;
-    self.toggleList   = toggleUsersList;
-    self.makeContact  = makeContact;
-
-    // Load all registered users
-
-    userService
-          .loadAllUsers()
-          .then( function( users ) {
-            self.users    = [].concat(users);
-            self.selected = users[1];
-          });
-
-    // *********************************
-    // Internal methods
-    // *********************************
-
-    /**
-     * Hide or Show the 'left' sideNav area
-     */
-    function toggleUsersList() {
-      $mdSidenav('left').toggle();
-    }
-
-    /**
-     * Select the current avatars
-     * @param menuId
-     */
-    function selectUser ( user ) {
-      self.selected = angular.isNumber(user) ? $scope.users[user] : user;
-    }
-
-    /**
-     * Show the Contact view in the bottom sheet
-     */
-    function makeContact(selectedUser) {
-
-        $mdBottomSheet.show({
-          controllerAs  : "cp",
-          templateUrl   : './src/users/view/contactSheet.html',
-          controller    : [ '$mdBottomSheet', ContactSheetController],
-          parent        : angular.element(document.getElementById('contact'))
-        }).then(function(clickedItem) {
-          $log.debug( clickedItem.name + ' clicked!');
-        });
+        self.showSinistreDescription = showSinistreDescription;
 
         /**
-         * User ContactSheet controller
+         * Show the sinistre view in the bottom sheet
          */
-        function ContactSheetController( $mdBottomSheet ) {
-          this.user = selectedUser;
-          this.actions = [
-            { name: 'Phone'       , icon: 'phone'       , icon_url: 'assets/svg/phone.svg'},
-            { name: 'Twitter'     , icon: 'twitter'     , icon_url: 'assets/svg/twitter.svg'},
-            { name: 'Google+'     , icon: 'google_plus' , icon_url: 'assets/svg/google_plus.svg'},
-            { name: 'Hangout'     , icon: 'hangouts'    , icon_url: 'assets/svg/hangouts.svg'}
-          ];
-          this.contactUser = function(action) {
-            // The actually contact process has not been implemented...
-            // so just hide the bottomSheet
+        function showSinistreDescription(selectedSinistre) {
 
-            $mdBottomSheet.hide(action);
-          };
+            $mdBottomSheet.show({
+                controllerAs: "sdc",
+                templateUrl: './src/users/view/sinistreDescription.html',
+                controller: ['$mdBottomSheet', SinistreController],
+                parent: angular.element(document.getElementById('sinistre'))
+            }).then(function (clickedItem) {
+                $log.debug(clickedItem.name + ' clicked!');
+            });
+
+            /**
+             * User sinistre controller
+             */
+            function SinistreDescriptionController($mdBottomSheet) {
+                this.sinistre = selectedSinistre;
+
+                this.sinistre = function (action) {
+                    // The actually contact process has not been implemented...
+                    // so just hide the bottomSheet
+
+                    $mdBottomSheet.hide(action);
+                };
+            }
         }
     }
 
-
-  }
-
-    function DemoCtrl (sinistreService, $timeout, $q, $log) {
+    function DemoCtrl(sinistreService, $timeout, $q, $log) {
         var self = this;
         self.simulateQuery = false;
-        self.isDisabled    = false;
-        self.repos         = []; //loadAll();
-        self.querySearch   = querySearch;
+        self.isDisabled = false;
+        self.repos = []; //loadAll();
+        self.querySearch = querySearch;
         self.selectedItemChange = selectedItemChange;
-        self.searchTextChange   = searchTextChange;
+        self.searchTextChange = searchTextChange;
         // ******************************
         // Internal methods
         // ******************************
@@ -108,20 +62,24 @@
          * Search for repos... use $timeout to simulate
          * remote dataservice call.
          */
-        function querySearch (query) {
-            var results = query ? self.repos.filter( createFilterFor(query) ) : self.repos,
+        function querySearch(query) {
+            var results = query ? self.repos.filter(createFilterFor(query)) : self.repos,
                 deferred;
             if (self.simulateQuery) {
                 deferred = $q.defer();
-                $timeout(function () { deferred.resolve( results ); }, Math.random() * 1000, false);
+                $timeout(function () {
+                    deferred.resolve(results);
+                }, Math.random() * 1000, false);
                 return deferred.promise;
             } else {
                 return results;
             }
         }
+
         function searchTextChange(text) {
             $log.info('Text changed to ' + text);
         }
+
         function selectedItemChange(item) {
             self.detail = undefined;
             if (item) {
@@ -133,18 +91,19 @@
             $log.info(JSON.stringify(self.detail));
             $log.info('Item changed to ' + JSON.stringify(item));
         }
+
         /**
          * Build `components` list of key/value pairs
          */
         sinistreService
             .loadAllSinistres()
-            .then( function( repos ) {
-                var normalizedRepos = repos.map( function (repo) {
+            .then(function (repos) {
+                var normalizedRepos = repos.map(function (repo) {
                     repo.normalized = removeAccents(angular.lowercase(repo.name));
                     return repo;
                 });
 
-                self.repos    = [].concat(normalizedRepos);
+                self.repos = [].concat(normalizedRepos);
             });
         /**
          * Create filter function for a query string
@@ -154,7 +113,7 @@
             normalized = removeAccents(normalized);
             return function filterFn(item) {
                 var splitted = normalized.split(" ");
-                for (var i = 0; i<splitted.length; i++) {
+                for (var i = 0; i < splitted.length; i++) {
                     if (item.normalized.indexOf(splitted[i]) == -1) {
                         return false;
                     }
@@ -173,9 +132,9 @@
                     /[\321]/g, /[\361]/g, // N, n
                     /[\307]/g, /[\347]/g, // C, c
                 ],
-                noaccent = ['A','a','E','e','I','i','O','o','U','u','N','n','C','c'];
+                noaccent = ['A', 'a', 'E', 'e', 'I', 'i', 'O', 'o', 'U', 'u', 'N', 'n', 'C', 'c'];
 
-            for (var i = 0; i < accent.length; i++){
+            for (var i = 0; i < accent.length; i++) {
                 source = source.replace(accent[i], noaccent[i]);
             }
 

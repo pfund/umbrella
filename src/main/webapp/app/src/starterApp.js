@@ -38,6 +38,8 @@
                 .icon("halfCover", "./assets/svg/assurances/halfCover.svg", 512)
                 .icon("noCover", "./assets/svg/assurances/noCover.svg", 512)
 
+                .icon("info", "./assets/svg/information.svg", 512)
+
                 .icon("summary", "./assets/svg/summary.svg", 512)
                 .icon("choose", "./assets/svg/choose.svg", 512)
                 .icon("quiz", "./assets/svg/quiz.svg", 512)
