@@ -2,7 +2,17 @@
     'use strict';
 
     angular
-        .module('starterApp', ['ngMaterial', 'users'])
+        .module('starterApp', ['ngRoute', 'ngMaterial', 'users'])
+        .config(
+            function ($routeProvider) {
+                $routeProvider.when('/recherche', {
+                    templateUrl: 'view-recherche/recherche.html'
+                }).when('/admin', {
+                    templateUrl: 'view-admin/admin.html'
+                }).otherwise({
+                redirectTo: '/recherche'
+            });
+        })
         .config(function ($mdThemingProvider, $mdIconProvider) {
 
             $mdIconProvider

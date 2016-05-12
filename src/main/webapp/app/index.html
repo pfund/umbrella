@@ -16,6 +16,7 @@
     <script src="../node_modules/angular/angular.js"></script>
     <script src="../node_modules/angular-animate/angular-animate.js"></script>
     <script src="../node_modules/angular-aria/angular-aria.js"></script>
+    <script src="../node_modules/angular-route/angular-route.js"></script>
     <script type="text/javascript" src="../node_modules/angular-material/angular-material.js"></script>
 
     <script src="./src/starterApp.js"></script>
@@ -45,18 +46,13 @@
         </md-content>
         <md-list layout="row">
             <md-list-item>
-                <md-button ng-class="selected" href="../app/index.html">
+                <md-button ng-class="selected" href="#/recherche">
                     {{'Sinistres' | uppercase}}
                 </md-button>
             </md-list-item>
             <md-list-item>
-                <md-button ng-class="" href="../../resume/app/index.html">
-                    {{'Mes contrats' | uppercase}}
-                </md-button>
-            </md-list-item>
-            <md-list-item>
-                <md-button ng-class="" href="/quiz/app/index.html">
-                    {{'Quiz' | uppercase}}
+                <md-button ng-class="" href="#/admin">
+                    {{'Admin' | uppercase}}
                 </md-button>
             </md-list-item>
         </md-list>
@@ -66,75 +62,7 @@
         <img ng-src="assets/img/logo.png" style="min-width: 100px; max-width: 432px; max-height:100px">
     </md-content>
 
-    <div flex layout="row" ng-cloak style="min-height: 75px; max-height: 80px">
-
-        <div flex="0" flex-gt-sm="33"></div>
-        <md-content flex layout-padding layout="column" layout-align="start none">
-            <form ng-submit="$event.preventDefault()">
-                <md-autocomplete
-                        ng-disabled="ctrl.isDisabled"
-                        md-no-cache="ctrl.noCache"
-                        md-selected-item="ctrl.selectedItem"
-                        md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
-                        md-search-text="ctrl.searchText"
-                        md-selected-item-change="ctrl.selectedItemChange(item)"
-                        md-items="item in ctrl.querySearch(ctrl.searchText)"
-                        md-item-text="item.name"
-                        md-min-length="1"
-                        placeholder="Rechercher un sinistre"
-                        md-menu-class="autocomplete-custom-template"
-                        md-match-case-insensitive="true">
-                    <md-item-template>
-                      <span class="item-title">
-                        <md-icon md-svg-icon="{{item.type}}"></md-icon>
-                      </span>
-                      <span class="item-content">
-                          <strong>{{item.name}}</strong>
-                      </span>
-                    </md-item-template>
-                </md-autocomplete>
-            </form>
-        </md-content>
-
-        <div flex="0" flex-gt-sm="33"></div>
-    </div>
-
-    <div flex layout="row" ng-cloak-align="none center" layout-padding>
-        <md-content flex ng-show="ctrl.selectedItem">
-
-            <h2>{{ctrl.selectedItem.name}}</h2>
-            <md-progress-circular md-mode="indeterminate"
-                                  ng-show="ctrl.selectedItem && !ctrl.detail"></md-progress-circular>
-
-            <span ng-if="ctrl.detail">
-            <p>
-                {{ctrl.detail.desc}}
-            </p>
-            <p>
-                <div ng-if="ctrl.detail.isCovered">
-                    <md-icon md-svg-icon="ok"></md-icon>
-                    Vous êtes couvert pour ce sinistre par le(s) contrat(s) suivant(s) :
-                    <ul>
-                        <li ng-repeat="contract in ctrl.detail.contracts">{{contract}}</li>
-                    </ul>
-                    Conditions de couverture :
-                    <ul>
-                        <li>Franchise : CHF {{ctrl.detail.franchiseAmount}}</li>
-                    </ul>
-                </div>
-                <div ng-if="!ctrl.detail.isCovered">
-                    <md-icon md-svg-icon="notok"></md-icon>
-                    Vous n'êtes pas couvert pour ce sinistre.
-                </div>
-                </p>
-
-                <md-button md-no-ink ng-click="ul.makeContact(ctrl.detail)">
-                    <md-tooltip>Compléter votre assurance</md-tooltip>
-                    <md-icon md-svg-icon="{{ctrl.selectedItem.type}}"></md-icon>
-                </md-button>
-        </span>
-        </md-content>
-    </div>
+    <div ng-view></div>
 
     <md-toolbar layout="row" layout-align="center end" style="background-color: #FFFFFF">
         &copy; die Mobiliar 2016
