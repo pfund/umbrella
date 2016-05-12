@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('starterApp', ['ngRoute', 'ngMaterial', 'users'])
+        .module('starterApp', ['ngRoute', 'ngMaterial', 'users', 'chart.js'])
         .config(
             function ($routeProvider) {
                 $routeProvider.when('/recherche', {
