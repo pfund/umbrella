@@ -46,31 +46,31 @@
 <body ng-app="starterApp" ng-cloak ng-controller="SinistreController as sc">
 
 <div id="main" flex="100" layout="column" ng-controller="DemoCtrl as ctrl" tabIndex="-1" role="main">
+    <md-sidenav hide-gt-sm class="md-sidenav-right md-whiteframe-z2" md-component-id="right">
+        <md-toolbar class="md-toolbar-tools <md-theme-light">
+            <h1 class="md-toolbar-tools">Menu</h1>
+            <span flex></span>
+            <button class="md-icon-button md-button md-ink-ripple" type="button" ng-click="ctrl.toggleMenu()" hide-gt-sm="" aria-label="Toggle Menu">
+                <md-icon md-svg-src="assets/svg/menu.svg" class="ng-scope" aria-hidden="true"></md-icon>
+                <div class="md-ripple-container"></div></button>
+        </md-toolbar>
+        <md-content layout-padding>
+            <md-list layout="column">
+                <md-list-item>
+                    <md-button ng-class="selected" href="#/recherche" ng-click="ctrl.toggleMenu()" style="width: 200px;">
+                        {{'Risques' | uppercase}}
+                    </md-button>
+                </md-list-item>
+                <md-list-item>
+                    <md-button ng-class="" href="#/admin" ng-click="ctrl.toggleMenu()" style="width: 200px;">
+                        {{'Admin' | uppercase}}
+                    </md-button>
+                </md-list-item>
+            </md-list>
+        </md-content>
+    </md-sidenav>
 
     <div>
-        <md-sidenav hide-gt-sm class="md-sidenav-right md-whiteframe-z2" md-component-id="right">
-            <md-toolbar class="md-toolbar-tools <md-theme-light">
-                <h1 class="md-toolbar-tools">Menu</h1>
-                <span flex></span>
-                <button class="md-icon-button md-button md-ink-ripple" type="button" ng-click="ctrl.toggleMenu()" hide-gt-sm="" aria-label="Toggle Menu">
-                    <md-icon md-svg-src="assets/svg/menu.svg" class="ng-scope" aria-hidden="true"></md-icon>
-                    <div class="md-ripple-container"></div></button>
-            </md-toolbar>
-            <md-content layout-padding>
-                <md-list layout="column">
-                    <md-list-item>
-                        <md-button ng-class="selected" href="#/recherche" ng-click="ctrl.toggleMenu()" style="width: 200px;">
-                            {{'Risques' | uppercase}}
-                        </md-button>
-                    </md-list-item>
-                    <md-list-item>
-                        <md-button ng-class="" href="#/admin" ng-click="ctrl.toggleMenu()" style="width: 200px;">
-                            {{'Admin' | uppercase}}
-                        </md-button>
-                    </md-list-item>
-                </md-list>
-            </md-content>
-        </md-sidenav>
         <div layout="row">
             <div flex="0" flex-gt-sm="25">&nbsp;</div>
             <div flex="75" flex-gt-sm="50" layout-padding>
