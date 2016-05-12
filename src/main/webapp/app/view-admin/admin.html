@@ -1,29 +1,73 @@
 <div ng-controller="AdminController as ctrl">
-    <div layout-gt-sm="row" layout="column" style="padding-bottom: 100px">
-        <div flex>
-            <canvas id="bar" class="chart chart-bar"
-                    chart-data="dataBarChart" chart-labels="labelsBarChart" chart-series="seriesBarChart" chart-options="{scaleFontSize: 0}">
-            </canvas>
-        <div style="text-align: center; font-weight: bold; padding-top: 30px">Top 10 des recherches de couverture</div>
+    <md-progress-circular md-mode="indeterminate" ng-show="!ctrl.searchStatsByType" style="left: 50%">
+    </md-progress-circular>
+
+    <div ng-show="ctrl.searchStatsByType">
+        <div layout-gt-sm="row" layout="column" style="padding-bottom: 100px">
+            <div flex>
+                <canvas id="bar" class="chart chart-bar"
+                        chart-data="dataBarChart" chart-labels="labelsBarChart" chart-series="seriesBarChart" chart-options="{scaleFontSize: 0}">
+                </canvas>
+            <div style="text-align: center; font-weight: bold; padding-top: 30px">Top 10 des recherches de couverture</div>
+            </div>
+            <div flex>
+                <canvas id="pie" class="chart chart-pie" chart-data="dataPie" chart-labels="labelsPie" chart-legend="true">
+                </canvas>
+                <div style="text-align: center; font-weight: bold">Répartition des recherches de couverture par type de risque</div>
+            </div>
         </div>
-        <div flex>
-            <canvas id="pie" class="chart chart-pie" chart-data="dataPie" chart-labels="labelsPie" chart-legend="true">
-            </canvas>
-            <div style="text-align: center; font-weight: bold">Répartition des recherches de couverture par type de risque</div>
-        </div>
+
+        <md-card>
+            <md-toolbar>
+                <div class="md-toolbar-tools">
+                    <div class="md-title">Recherche par type</div>
+                </div>
+            </md-toolbar>
+
+            <md-table-container>
+                <table md-table >
+                    <thead md-head md-order="ctrl.searchStatsByTypeOrder">
+                        <tr md-row>
+                            <th md-column md-order-by="_id">Type</th>
+                            <th md-column md-order-by="count" md-numeric>Nb de recherches</th>
+                        </tr>
+                    </thead>
+                    <tbody md-body>
+                    <tr md-row ng-repeat="item in ctrl.searchStatsByType | orderBy: ctrl.searchStatsByTypeOrder">
+                        <td md-cell>{{item._id | uppercase }}</td>
+                        <td md-cell>{{item.count}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </md-table-container>
+        </md-card>
+
+        <md-card>
+            <md-toolbar>
+                <div class="md-toolbar-tools">
+                    <div class="md-title">Recherche par nom</div>
+                </div>
+            </md-toolbar>
+
+            <md-table-container>
+                <table md-table>
+                    <thead md-head md-order="ctrl.searchStatsByNameOrder">
+                        <tr md-row>
+                            <th md-column md-order-by="_id">Nom</th>
+                            <th md-column md-order-by="count" md-numeric>Nb de recherches</th>
+                        </tr>
+                    </thead>
+                    <tbody md-body>
+                    <!-- we can let ng-repeat sort the columns for us -->
+                    <tr md-row ng-repeat="item in ctrl.searchStatsByName | orderBy: ctrl.searchStatsByNameOrder">
+                        <td md-cell>{{item._id}}</td>
+                        <td md-cell>{{item.count}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </md-table-container>
+        </md-card>
+
     </div>
 
-    <md-list>
-        <md-subheader class="md-no-sticky">Recherches par type</md-subheader>
-        <md-list-item ng-repeat="item in ctrl.searchStatsByType">
-            <p>{{item._id }}</p>
-            <p>{{item.count}}</p>
-        </md-list-item>
-        <md-divider></md-divider>
-        <md-subheader class="md-no-sticky">Recherches par nom</md-subheader>
-        <md-list-item ng-repeat="item in ctrl.searchStatsByName">
-            <p>{{item._id }}</p>
-            <p>{{item.count}}</p>
-        </md-list-item>
-    </md-list>
 </div>

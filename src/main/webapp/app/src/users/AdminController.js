@@ -9,6 +9,9 @@
 
   function AdminController(adminService, $scope) {
     var self = this;
+      self.searchStatsByNameOrder = '_id';
+      self.searchStatsByTypeOrder = '_id';
+      
     adminService.getSearchStatsByType().then(function(response) {
         self.searchStatsByType = response.data;
         $scope.labelsPie = [];
@@ -17,7 +20,7 @@
         var searchStatsByType = response.data;
         for (var i = 0; i < searchStatsByType.length; i++) {
             var item = searchStatsByType[i];
-            $scope.labelsPie.push(item._id);
+            $scope.labelsPie.push(item._id.toUpperCase());
             $scope.dataPie.push(item.count);
         }
     });
