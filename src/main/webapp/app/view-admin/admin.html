@@ -1,9 +1,15 @@
 <div ng-controller="AdminController as ctrl">
-{{ctrl.searchStatsByType}}
-
-    <div style="width: 200px">
-    <canvas id="bar" class="chart chart-bar"
-            chart-data="data" chart-labels="labels"> chart-series="series"
-    </canvas>
+    <div layout="row" layout-xs="column" style="padding-bottom: 100px">
+        <div flex>
+            <canvas id="bar" class="chart chart-bar"
+                    chart-data="dataBarChart" chart-labels="labelsBarChart" chart-series="seriesBarChart" chart-options="{scaleFontSize: 0}">
+            </canvas>
+        <div style="text-align: center; font-weight: bold; padding-top: 30px">Top 10 des recherches de couverture</div>
+        </div>
+        <div flex>
+            <canvas id="pie" class="chart chart-pie" chart-data="dataPie" chart-labels="labelsPie" chart-legend="true">
+            </canvas>
+            <div style="text-align: center; font-weight: bold">Répartition des recherches de couverture par type de risque</div>
+        </div>
     </div>
 </div>

@@ -10,17 +10,31 @@
   function AdminController(adminService, $scope) {
     var self = this;
     adminService.getSearchStatsByType().then(function(response) {
-        self.searchStatsByType = response.data;
+        $scope.labelsPie = [];
+        $scope.dataPie = [];
+
+        var searchStatsByType = response.data;
+        for (var i = 0; i < searchStatsByType.length; i++) {
+            var item = searchStatsByType[i];
+            $scope.labelsPie.push(item._id);
+            $scope.dataPie.push(item.count);
+        }
     });
 
-      $scope.labels = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
-      $scope.series = ['Series A', 'Series B'];
+      adminService.getSearchStatsByName().then(function(response) {
+        $scope.labelsBarChart = [];
+        $scope.seriesBarChart = ["Nom"];
+        $scope.dataBarChart = [];
 
-      $scope.data = [
-          [65, 59, 80, 81, 56, 55, 40],
-          [28, 48, 40, 19, 86, 27, 90]
-      ];
-
+          var searchStatsByName = response.data;
+          var dataTable = [];
+          for (var i = 0; i < searchStatsByName.length; i++) {
+              var item = searchStatsByName[i];
+              $scope.labelsBarChart.push(item._id);
+              dataTable.push(item.count);
+          }
+          $scope.dataBarChart.push(dataTable);
+      });
   }
 
 })();
