@@ -34,7 +34,7 @@
 
               var searchStatsByName = response.data;
               var dataTable = [];
-              for (var i = 0; i < searchStatsByName.length; i++) {
+              for (var i = 0; i < searchStatsByName.length && i<10; i++) {
                   var item = searchStatsByName[i];
                   $scope.labelsBarChart.push(item._id);
                   dataTable.push(item.count);
