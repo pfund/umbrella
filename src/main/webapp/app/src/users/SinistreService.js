@@ -36,8 +36,8 @@
                 'name': 'Vol avec effraction',
                 'desc': 'Le vol avec effraction implique deux conditions : le voleur doit avoir pénétré avec effraction (dans votre habitation ou votre voiture) et avoir emporté quelque chose.',
                 'type': 'vol',
-                covered: true,
-                contracts: [123456789, 987456321]
+                'covered': true,
+                'contracts': [123456789, 987456321]
             },
             {'name': 'Bagages', 'type': 'vol'},
             {'name': 'Vol simple hors du domicile', 'type': 'vol'},
@@ -47,10 +47,11 @@
             {'name': 'Vol avec effraction / détroussement', 'type': 'vol'},
             {
                 'name': 'Vol de téléphone en déplacement',
-                'desc': 'Vous êtes actuellement couvert pour le vol simple, le détroussement ainsi que le vol par effraction. Il vous est cependant possible de souscrire à une option liée à votre assurance ménage.',
+                'desc': 'Lors d\'un déplacement vous vous faites volez un objet de l\'inventaire du ménage.',
                 'type': 'vol',
                 'covered': false,
-                contracts: [
+                'coverText':'Vous êtes actuellement couvert pour le vol simple, le détroussement ainsi que le vol par effraction. Il vous est cependant possible de souscrire à une option liée à votre assurance ménage.',
+                'contracts': [
                     {
                         'id': '13021196',
                         'name': 'Assurance ménage',

@@ -25,7 +25,7 @@
             $mdBottomSheet.show({
                 controllerAs: "sdc",
                 templateUrl: './src/users/view/sinistreDescription.html',
-                controller: ['$mdBottomSheet', SinistreController],
+                controller: ['$mdBottomSheet', SinistreDescriptionController],
                 parent: angular.element(document.getElementById('sinistre'))
             }).then(function (clickedItem) {
                 $log.debug(clickedItem.name + ' clicked!');
@@ -37,7 +37,7 @@
             function SinistreDescriptionController($mdBottomSheet) {
                 this.sinistre = selectedSinistre;
 
-                this.sinistre = function (action) {
+                this.sinistreHide = function (action) {
                     // The actually contact process has not been implemented...
                     // so just hide the bottomSheet
 
