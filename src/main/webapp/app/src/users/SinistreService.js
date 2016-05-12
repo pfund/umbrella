@@ -15,6 +15,98 @@
     function SinistreService($q, $timeout, $http) {
         var sinistres = [
                 {
+                    'name': 'Dommages corp./matériels entrepr. du bâtiment', 'type': 'dommages',
+                    'other': true
+                },
+                {
+                    'name': 'Incendie', 'type': 'dommages',
+                    'other': true
+                },
+                {
+                    'name': 'Incendie choses spéciales', 'type': 'dommages',
+                    'other': true
+                },
+                {
+                    'name': 'Dommages corporels et matériels CB/RS', 'type': 'dommages',
+                    'other': true
+                },
+                {
+                    'name': 'Dommages naturels', 'type': 'dommages',
+                    'other': true
+                },
+                {
+                    'name': 'Dommages au véhicule parqué', 'type': 'dommages',
+                    'other': true
+                },
+                {
+                    'name': 'Choses transportées', 'type': 'dommages',
+                    'other': true
+                },
+                {
+                    'name': 'Dégâts d\'eau', 'type': 'dommages',
+                    'other': true
+                },
+                {
+                    'name': 'Dommages corporels/matériels industrie hôtelière', 'type': 'dommages',
+                    'other': true
+                },
+                {
+                    'name': 'Dommages corporels et matériels couverture de base', 'type': 'dommages',
+                    'other': true
+                },
+                {
+                    'name': 'Dégâts d\'eau bâtiment et frais', 'type': 'dommages',
+                    'other': true
+                },
+                {
+                    'name': 'Dommages naturels', 'type': 'dommages',
+                    'other': true
+                },
+                {
+                    'name': 'PC, laptop, agenda électron., écrans plats, beamer: PC Apple', 'type': 'dommages',
+                    'other': true
+                },
+                {
+                    'name': 'Détérioration de bagages', 'type': 'dommages',
+                    'other': true
+                },
+                {
+                    'name': 'Bris de vitrages du bâtiment', 'type': 'dommages',
+                    'other': true
+                },
+                {
+                    'name': 'Bris de vitrages du mobilier', 'type': 'dommages',
+                    'other': true
+                },
+                {
+                    'name': 'Risque spécial dommages naturels', 'type': 'dommages',
+                    'other': true
+                },
+                {
+                    'name': 'Bagages', 'type': 'vol',
+                    'other': true
+                },
+                {
+                    'name': 'Vol simple hors du domicile', 'type': 'vol',
+                    'other': true
+                },
+                {
+                    'name': 'Vêtements et casque de moto', 'type': 'vol',
+                    'other': true
+                },
+                {
+                    'name': 'Vol simple au domicile', 'type': 'vol',
+                    'other': true
+                },
+                {
+                    'name': 'Détroussement', 'type': 'vol',
+                    'other': true
+                },
+                {
+                    'name': 'Vol avec effraction / détroussement', 'type': 'vol',
+                    'other': true
+                },
+                {
                     'name': 'Vol par effraction d\'un home cinema',
                     'desc': 'Un voleur s’introduit chez vous par effraction (briser une vitre, enfoncer une porte, etc.) et dérobe des biens de l’inventaire du ménage.',
                     'type': 'vol',
@@ -28,20 +120,20 @@
                             'type': 'vol',
                             'descType': 'Responsabilité civile privée, assistance 24h/24, inventaire du ménage.',
                             'sommeAssurance': 100000,
-                            'franchise' : 400,
+                            'franchise': 400,
                             'options': [
                                 {
                                     'name': 'Assurance ménage',
                                     'prime': '30CHF',
-                                    'franchise' : { id: 400, name: 400},
-                                    'franchisesAvailable':[
+                                    'franchise': {id: 400, name: 400},
+                                    'franchisesAvailable': [
                                         {
                                             id: 100,
-                                            name : 100
+                                            name: 100
                                         },
                                         {
-                                            id : 400,
-                                            name : 400
+                                            id: 400,
+                                            name: 400
                                         }
                                     ],
                                     'sommeAssurance': 100000
@@ -64,7 +156,7 @@
                             'type': 'Minima',
                             'descType': 'Responsabilité civile privée, assistance 24h/24, inventaire du ménage.',
                             'sommeAssurance': 100000,
-                            'franchise' : 400,
+                            'franchise': 400,
                             'options': [
                                 {}
                             ],
@@ -72,20 +164,20 @@
                                 {
                                     'name': 'vol simple hors du domicile',
                                     'prime': '30 CHF',
-                                    'franchise' : 400,
-                                    'franchisesAvailable':[
+                                    'franchise': 400,
+                                    'franchisesAvailable': [
                                         {
                                             id: 100,
-                                            name : 100
+                                            name: 100
                                         },
                                         {
-                                            id : 400,
-                                            name : 400
+                                            id: 400,
+                                            name: 400
                                         }
                                     ],
-                                    'sommeAssurance' : {
-                                        id : 1000,
-                                        name : '1000'
+                                    'sommeAssurance': {
+                                        id: 1000,
+                                        name: '1000'
                                     },
                                     'sommesAssuranceAvailable': [
                                         {

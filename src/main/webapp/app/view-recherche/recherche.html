@@ -43,7 +43,56 @@
         </md-progress-circular>
 
         <!-- Tous les cas non gérés -->
-        <div ng-if="ctrl.detail && ctrl.detail.other"></div>
+        <div ng-if="ctrl.detail && ctrl.detail.other">
+
+            <md-content flex>
+                <md-card>
+                    <md-card-header>
+                        <md-card-header-text>
+                            <md-content flex layout="row">
+                                <md-content>
+
+                                    <div class="md-headline">
+                                        {{ctrl.selectedItem.name}}
+                                        <md-button md-no-ink ng-click="sc.sinistreDescription($event, ctrl.detail)">
+                                            <md-icon class="md-user-avatar" md-svg-icon="info"></md-icon>
+                                        </md-button>
+                                    </div>
+
+                                </md-content>
+                            </md-content>
+                            <md-content flex>
+                                    <span class="md-flex" style="color:#880000">
+                                        <md-icon md-svg-icon="notok"></md-icon>
+                                        Ce cas n'est pas géré !
+                                    </span>
+                            </md-content>
+                        </md-card-header-text>
+                    </md-card-header>
+
+                    <md-card-title>
+                        <md-card-title-text>
+                            <span class="md-headline">Version démo</span>
+                            <span class="md-subhead">Cette démo a été créée dans le cadre des Challenge Days! Afin de voir un meilleur exemple, recherchez un des risques suivants :
+                            <md-list>
+                                <md-list-item>
+                                    Vol par effraction d'un home cinema
+                                </md-list-item>
+                                <md-list-item>
+                                    Vol de téléphone lors d'un déplacement
+                                </md-list-item>
+                                <md-list-item>
+                                    Annulation de vacances
+                                </md-list-item>
+                            </md-list>
+                            </span>
+                        </md-card-title-text>
+                    </md-card-title>
+                </md-card>
+
+            </md-content>
+
+        </div>
 
         <!-- Cas 1 : couvert par l'assurance ménage-->
         <div ng-if="ctrl.detail && !ctrl.detail.other  && ctrl.detail.covered">
@@ -59,7 +108,6 @@
                                         <md-icon class="md-user-avatar" md-svg-icon="info"></md-icon>
                                     </md-button>
                                 </div>
-
                             </md-content>
                         </md-content>
                         <md-content>
@@ -74,7 +122,6 @@
                 <md-card-title>
                     <md-card-title-text>
                         <div ng-show="ctrl.detail.contracts" ng-repeat="contract in ctrl.detail.contracts">
-
                             <md-list>
                                 <md-subheader class="md-no-sticky">{{contract.name}}</md-subheader>
                                 <md-list-item>
@@ -148,7 +195,7 @@
         </div>
 
         <!-- Cas 2 : pas couvert -->
-        <div flex ng-if="ctrl.detail && !ctrl.detail.other && !ctrl.detail.covered">
+        <div flex ng-if="ctrl.detail && !ctrl.detail.other && !ctrl.detail.covered && !ctrl.detail.insuranceAvailable"">
 
             <md-card>
                 <md-card-header>
@@ -259,55 +306,54 @@
                     <md-button class="md-raised" ng-click="sc.sent($event)">Envoyer</md-button>
                 </md-card-actions>
             </md-card>
-    </md-content>
 
-</div>
+        </div>
 
-<!-- Cas 3 : souscrire à une assurance -->
-<md-content flex ng-show="ctrl.detail && !ctrl.detail.other && ctrl.detail.insuranceAvailable"
-            ng-repeat="insurance in ctrl.detail.insuranceAvailable" layout="row">
+        <!-- Cas 3 : souscrire à une assurance -->
+        <md-content flex ng-show="ctrl.detail && !ctrl.detail.other && ctrl.detail.insuranceAvailable"
+                    ng-repeat="insurance in ctrl.detail.insuranceAvailable" layout="row">
 
-    <md-content flex>
-        <md-card>
-            <md-card-header>
-                <md-card-header-text>
-                    <md-content flex layout="row">
-                        <md-content>
+            <md-content flex>
+                <md-card>
+                    <md-card-header>
+                        <md-card-header-text>
+                            <md-content flex layout="row">
+                                <md-content>
 
-                            <div class="md-headline">
-                                {{ctrl.selectedItem.name}}
-                                <md-button md-no-ink ng-click="sc.sinistreDescription($event, ctrl.detail)">
-                                    <md-icon class="md-user-avatar" md-svg-icon="info"></md-icon>
-                                </md-button>
-                            </div>
+                                    <div class="md-headline">
+                                        {{ctrl.selectedItem.name}}
+                                        <md-button md-no-ink ng-click="sc.sinistreDescription($event, ctrl.detail)">
+                                            <md-icon class="md-user-avatar" md-svg-icon="info"></md-icon>
+                                        </md-button>
+                                    </div>
 
-                        </md-content>
-                    </md-content>
-                    <md-content flex>
+                                </md-content>
+                            </md-content>
+                            <md-content flex>
                                     <span class="md-flex" style="color:#880000">
                                         <md-icon md-svg-icon="notok"></md-icon>
                                         Vous n'êtes pas couvert pour ce risque !
                                     </span>
-                    </md-content>
-                </md-card-header-text>
-            </md-card-header>
+                            </md-content>
+                        </md-card-header-text>
+                    </md-card-header>
 
-            <img ng-src="assets/img/voyage.jpg">
-            <md-card-title>
-                <md-card-title-text>
-                    <span class="md-headline">{{insurance.name}}</span>
-                    <span class="md-subhead">{{insurance.desc}}</span>
-                </md-card-title-text>
-            </md-card-title>
-            <md-card-actions layout="row" layout-align="end center">
-                <md-button class="md-raised" ng-click="sc.sent($event)">Souscrire une {{insurance.name}}
-                </md-button>
-            </md-card-actions>
-        </md-card>
+                    <img ng-src="assets/img/voyage.jpg">
+                    <md-card-title>
+                        <md-card-title-text>
+                            <span class="md-headline">{{insurance.name}}</span>
+                            <span class="md-subhead">{{insurance.desc}}</span>
+                        </md-card-title-text>
+                    </md-card-title>
+                    <md-card-actions layout="row" layout-align="end center">
+                        <md-button class="md-raised" ng-click="sc.sent($event)">Souscrire une {{insurance.name}}
+                        </md-button>
+                    </md-card-actions>
+                </md-card>
 
+            </md-content>
+        </md-content>
     </md-content>
-</md-content>
-</md-content>
 
-<div flex="0" flex-gt-sm="25"></div>
+    <div flex="0" flex-gt-sm="25"></div>
 </div>
