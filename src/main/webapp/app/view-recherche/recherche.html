@@ -186,13 +186,19 @@
                     <md-list>
                         <md-subheader class="md-no-sticky">Souscrire l'option {{option.name}}</md-subheader>
                         <md-list-item>
+                            <p>
                             <md-input-container>
                                 <label>
-                                    Somme d'assurance
+                                    Somme_assurée
                                 </label>
-                                <input type="number" step="1" ng-model="option.sommeAssurance">
-
+                                <md-select ng-model="option.sommeAssurance"
+                                           ng-model-options="{trackBy: '$value.id'}">
+                                    <md-option ng-value="somme"
+                                               ng-repeat="somme in option.sommesAssuranceAvailable">{{somme.name}} CHF
+                                    </md-option>
+                                </md-select>
                             </md-input-container>
+                            </p>
                         </md-list-item>
                         <md-list-item>
                             <p>

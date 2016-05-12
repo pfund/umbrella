@@ -83,7 +83,10 @@
                                             name : 400
                                         }
                                     ],
-                                    'sommeAssurance' : 1000,
+                                    'sommeAssurance' : {
+                                        id : 1000,
+                                        name : '1000'
+                                    },
                                     'sommesAssuranceAvailable': [
                                         {
                                             id: 1000,
