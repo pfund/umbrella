@@ -13,7 +13,7 @@
                     md-items="item in ctrl.querySearch(ctrl.searchText)"
                     md-item-text="item.name"
                     md-min-length="1"
-                    placeholder="Rechercher un sinistre"
+                    placeholder="Rechercher un risque"
                     md-menu-class="autocomplete-custom-template"
                     md-match-case-insensitive="true">
                 <md-item-template>
@@ -33,7 +33,7 @@
 
 <div flex layout="row" ng-cloak id="content">
 
-    <div flex="0" flex-gt-sm="20"></div>
+    <div flex="0" flex-gt-sm="25"></div>
 
     <md-content flex layout-padding layout="column" ng-show="ctrl.selectedItem">
 
@@ -50,25 +50,9 @@
             <p>
                 <div ng-if="ctrl.detail.covered">
                     <md-icon md-svg-icon="ok"></md-icon>
-                    Vous êtes couvert pour ce sinistre par le(s) contrat(s) suivant(s) :
-                    <ul>
-                        <li ng-repeat="contract in ctrl.detail.contracts">{{contract.id}}</li>
-                    </ul>
-                    Conditions de couverture :
-                    <ul>
-                        <li>Franchise : CHF {{ctrl.detail.franchiseAmount}}</li>
-                    </ul>
-                </div>
+                    Vous êtes couvert pour ce risque par le(s) contrat(s) suivant(s) :
 
-                <!--Pas couvert !-->
-                <div ng-if="!ctrl.detail.covered">
-
-                    <md-icon md-svg-icon="notok"></md-icon>
-                    <strong>Vous n'êtes pas couvert pour ce sinistre.</strong>
-                    <br>
-                    {{ctrl.detail.coverText}}
-
-                    <div ng-repeat="contract in ctrl.detail.contracts">
+                    <div ng-show="ctrl.detail.contracts" ng-repeat="contract in ctrl.detail.contracts">
                         <h3>{{contract.name}}</h3>
 
                         Numéro de police : {{contract.id}}<br>
@@ -77,12 +61,85 @@
                         Votre prime annuelle est de <strong>{{contract.prime}}</strong>.
 
                         <br><br>
-                        Ajouter des options :
 
-                        <div layout="row" ng-repeat="option in contract.options">
-                            <div flex>{{option.name}}</div>
-                            <div flex><input type="button" value="Ajouter l'option"></div>
+                        <div ng-show="contract.options"
+                             ng-repeat="option in contract.options">
+                            <div layout="row">
+                                <div flex>{{option.name}}</div>
+                                <div flex>
+                                    <md-button>Modifier l'option</md-button>
+                                </div>
+                            </div>
+
+                            <div layout="row">
+                                <div flex>Somme d'assurance</div>
+                                <div flex>
+                                    <md-select ng-model="option.sommeAssurance"
+                                               ng-model-options="{trackBy: '$value.id'}">
+                                        <md-option ng-value="somme"
+                                                   ng-repeat="somme in option.sommesAssuranceAvailable">{{somme.name}}
+                                        </md-option>
+                                    </md-select>
+                                </div>
+                            </div>
+
+                            <div>
+                                <md-button>Enregistrer</md-button>
+                            </div>
                         </div>
+                    </div>
+
+                </div>
+
+                <!--Pas couvert !-->
+                <div ng-if="!ctrl.detail.covered">
+
+                    <md-icon md-svg-icon="notok"></md-icon>
+                    <strong>Vous n'êtes pas couvert pour ce risque.</strong>
+                    <br>
+                    {{ctrl.detail.coverText}}
+
+                    <div ng-show="ctrl.detail.contracts" ng-repeat="contract in ctrl.detail.contracts">
+                        <h3>{{contract.name}}</h3>
+
+                        Numéro de police : {{contract.id}}<br>
+                        Type du contrat : {{contract.type}}<br>
+                        {{contract.descType}}<br>
+                        Votre prime annuelle est de <strong>{{contract.prime}}</strong>.
+
+                        <br><br>
+
+                        <h3>Souscrire à une option</h3>
+
+                        <div ng-show="contract.optionsAvailable"
+                             ng-repeat="option in contract.optionsAvailable">
+                            <div layout="row">
+                                <div flex>{{option.name}}</div>
+                            </div>
+
+                            <div layout="row">
+                                <div flex>Somme d'assurance</div>
+                                <div flex>
+                                    <md-select ng-model="option.sommeAssurance"
+                                               ng-model-options="{trackBy: '$value.id'}">
+                                        <md-option ng-value="somme"
+                                                   ng-repeat="somme in option.sommesAssuranceAvailable">{{somme.name}}
+                                        </md-option>
+                                    </md-select>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div flex>
+                                    <md-button>Ajouter l'option</md-button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div ng-show="ctrl.detail.insuranceAvailable"
+                         ng-repeat="insurance in ctrl.detail.insuranceAvailable">
+                        <br><a ng-href="{{insurance.link}}">{{insurance.name}}</a>
                     </div>
 
                 </div>
@@ -91,5 +148,5 @@
         </span>
     </md-content>
 
-    <div flex="0" flex-gt-sm="20"></div>
+    <div flex="0" flex-gt-sm="25"></div>
 </div>
