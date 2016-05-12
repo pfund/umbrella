@@ -23,7 +23,7 @@
 
       adminService.getSearchStatsByName().then(function(response) {
         $scope.labelsBarChart = [];
-        $scope.seriesBarChart = ["Nom"];
+        $scope.seriesBarChart = ["Nombre de recherches "];
         $scope.dataBarChart = [];
 
           var searchStatsByName = response.data;
