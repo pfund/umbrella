@@ -42,110 +42,133 @@
                 <md-icon md-svg-icon="info"></md-icon>
             </md-button>
         </h2>
+
         <md-progress-circular md-mode="indeterminate"
-                              ng-show="ctrl.selectedItem && !ctrl.detail"></md-progress-circular>
+                              ng-show="ctrl.selectedItem && !ctrl.detail">
+        </md-progress-circular>
 
-            <span ng-if="ctrl.detail">
+        <!-- Cas 1 : couvert par l'assurance ménage -->
+        <div ng-if="ctrl.detail.covered">
 
-            <p>
-                <div ng-if="ctrl.detail.covered">
-                    <md-icon md-svg-icon="ok"></md-icon>
-                    Vous êtes couvert pour ce risque par le(s) contrat(s) suivant(s) :
+            <md-icon md-svg-icon="ok"></md-icon>
+            Vous êtes couvert pour ce risque par le(s) contrat(s) suivant(s) :
 
-                    <div ng-show="ctrl.detail.contracts" ng-repeat="contract in ctrl.detail.contracts">
-                        <h3>{{contract.name}}</h3>
+            <div ng-show="ctrl.detail.contracts" ng-repeat="contract in ctrl.detail.contracts">
 
-                        Numéro de police : {{contract.id}}<br>
-                        Type du contrat : {{contract.type}}<br>
-                        {{contract.descType}}<br>
-                        Votre prime annuelle est de <strong>{{contract.prime}}</strong>.
+                <h3>{{contract.name}}</h3>
 
-                        <br><br>
+                Numéro de police : {{contract.id}}<br>
+                {{contract.descType}}<br>
+                Votre prime annuelle est de <strong>{{contract.prime}}</strong>.
 
-                        <div ng-show="contract.options"
-                             ng-repeat="option in contract.options">
-                            <div layout="row">
-                                <div flex>{{option.name}}</div>
-                                <div flex>
-                                    <md-button>Modifier l'option</md-button>
-                                </div>
-                            </div>
+                <br><br>
 
-                            <div layout="row">
-                                <div flex>Somme d'assurance</div>
-                                <div flex>
-                                    <md-select ng-model="option.sommeAssurance"
-                                               ng-model-options="{trackBy: '$value.id'}">
-                                        <md-option ng-value="somme"
-                                                   ng-repeat="somme in option.sommesAssuranceAvailable">{{somme.name}}
-                                        </md-option>
-                                    </md-select>
-                                </div>
-                            </div>
+                <div ng-show="contract.options"
+                     ng-repeat="option in contract.options">
 
-                            <div>
-                                <md-button>Enregistrer</md-button>
-                            </div>
+                    <h3>Modifier l'assurance</h3>
+
+                    <md-content layout-gt-sm="row" layout-padding ng-if="ctrl.detail">
+
+                        <md-input-container>
+                            <label>
+                                Somme d'assurance
+                            </label>
+                            <input type="number" step="1" ng-model="option.sommeAssurance">
+
+                        </md-input-container>
+
+                        <md-input-container>
+                            <label>
+                                Franchise
+                            </label>
+                            <md-select ng-model="option.franchise"
+                                       ng-model-options="{trackBy: '$value.id'}">
+                                <md-option ng-value="franchise"
+                                           ng-repeat="franchise in option.franchisesAvailable">{{franchise.name}}
+                                </md-option>
+                            </md-select>
+                        </md-input-container>
+                        <div layout-align="center">
+                            <md-button class="md-raised" ng-click="sc.sent($event)">Envoyer</md-button>
+                        </div>
+                    </md-content>
+
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Cas 2 et 3 : pas couvert -->
+        <div ng-if="!ctrl.detail.covered">
+
+            <md-icon md-svg-icon="notok"></md-icon>
+            <strong>Vous n'êtes pas couvert pour ce risque.</strong>
+            <br>
+            {{ctrl.detail.coverText}}
+
+            <div ng-show="ctrl.detail.contracts" ng-repeat="contract in ctrl.detail.contracts">
+                <h3>{{contract.name}}</h3>
+
+                Numéro de police : {{contract.id}}<br>
+                Type du contrat : {{contract.type}}<br>
+                {{contract.descType}}<br>
+                Votre prime annuelle est de <strong>{{contract.prime}}</strong>.
+
+                <br><br>
+
+                <!-- Cas 2 : souscrire à une option -->
+                <div ng-show="contract.optionsAvailable"
+                     ng-repeat="option in contract.optionsAvailable">
+
+                    <h3>Souscrire à une option</h3>
+
+                    <div layout="row">
+                        <div flex>{{option.name}}</div>
+                    </div>
+
+                    <div flex layout="row">
+                        <div flex>Somme d'assurance</div>
+                        <div flex>
+                            <md-select ng-model="option.sommeAssurance"
+                                       ng-model-options="{trackBy: '$value.id'}">
+                                <md-option ng-value="somme"
+                                           ng-repeat="somme in option.sommesAssuranceAvailable">{{somme.name}}
+                                </md-option>
+                            </md-select>
                         </div>
                     </div>
 
-                </div>
-
-                <!--Pas couvert !-->
-                <div ng-if="!ctrl.detail.covered">
-
-                    <md-icon md-svg-icon="notok"></md-icon>
-                    <strong>Vous n'êtes pas couvert pour ce risque.</strong>
-                    <br>
-                    {{ctrl.detail.coverText}}
-
-                    <div ng-show="ctrl.detail.contracts" ng-repeat="contract in ctrl.detail.contracts">
-                        <h3>{{contract.name}}</h3>
-
-                        Numéro de police : {{contract.id}}<br>
-                        Type du contrat : {{contract.type}}<br>
-                        {{contract.descType}}<br>
-                        Votre prime annuelle est de <strong>{{contract.prime}}</strong>.
-
-                        <br><br>
-
-                        <h3>Souscrire à une option</h3>
-
-                        <div ng-show="contract.optionsAvailable"
-                             ng-repeat="option in contract.optionsAvailable">
-                            <div layout="row">
-                                <div flex>{{option.name}}</div>
-                            </div>
-
-                            <div layout="row">
-                                <div flex>Somme d'assurance</div>
-                                <div flex>
-                                    <md-select ng-model="option.sommeAssurance"
-                                               ng-model-options="{trackBy: '$value.id'}">
-                                        <md-option ng-value="somme"
-                                                   ng-repeat="somme in option.sommesAssuranceAvailable">{{somme.name}}
-                                        </md-option>
-                                    </md-select>
-                                </div>
-                            </div>
-
-                            <div>
-                                <div flex>
-                                    <md-button>Ajouter l'option</md-button>
-                                </div>
-                            </div>
+                    <div flex layout="row">
+                        <div flex>
+                            Franchise
+                        </div>
+                        <div flex>
+                            <md-slider ng-model="option.franchise" step="100" min="100" max="500">
+                            </md-slider>
+                        </div>
+                        <div flex>
+                            {{option.franchise}}
                         </div>
                     </div>
 
-                    <div ng-show="ctrl.detail.insuranceAvailable"
-                         ng-repeat="insurance in ctrl.detail.insuranceAvailable">
-                        <br><a ng-href="{{insurance.link}}">{{insurance.name}}</a>
+                    <div flex layout-align="center">
+                        <div flex>
+                            <md-button class="md-raised">Ajouter l'option</md-button>
+                        </div>
                     </div>
-
                 </div>
-                </p>
+            </div>
 
-        </span>
+            <!-- Cas 3 : souscrire à une assurance -->
+            <div ng-show="ctrl.detail.insuranceAvailable"
+                 ng-repeat="insurance in ctrl.detail.insuranceAvailable">
+                {{insurance.desc}}
+                <md-button class="md-raised">{{insurance.name}}</md-button>
+            </div>
+
+        </div>
+
     </md-content>
 
     <div flex="0" flex-gt-sm="25"></div>

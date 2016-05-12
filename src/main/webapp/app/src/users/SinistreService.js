@@ -15,6 +15,40 @@
     function SinistreService($q, $timeout, $http) {
         var sinistres = [
                 {
+                    'name': 'Vol par effraction d\'un home cinema',
+                    'desc': 'Un voleur s’introduit chez vous par effraction (briser une vitre, enfoncer une porte, etc.) et dérobe des biens de l’inventaire du ménage.',
+                    'type': 'vol',
+                    'covered': true,
+                    'coverText': 'Vous êtes actuellement couvert pour le vol par effraction.',
+                    'contracts': [
+                        {
+                            'id': '10031987',
+                            'name': 'Assurance ménage',
+                            'prime': '212,30 CHF',
+                            'type': 'vol',
+                            'descType': 'Responsabilité civile privée, assistance 24h/24, inventaire du ménage.',
+                            'options': [
+                                {
+                                    'name': 'Assurance ménage',
+                                    'prime': '30CHF',
+                                    'franchise' : { id: 400, name: '400'},
+                                    'franchisesAvailable':[
+                                        {
+                                            id: 100,
+                                            name : '100'
+                                        },
+                                        {
+                                            id : 400,
+                                            name : 400
+                                        }
+                                    ],
+                                    'sommeAssurance': 100000
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
                     'name': 'Vol de téléphone lors d\'un déplacement',
                     'desc': 'Lors d\'un déplacement vous vous faites volez un objet de l\'inventaire du ménage.',
                     'type': 'vol',
@@ -24,7 +58,7 @@
                         {
                             'id': '13021196',
                             'name': 'Assurance ménage',
-                            'prime': '147,50CHF',
+                            'prime': '212,30 CHF',
                             'type': 'Minima',
                             'descType': 'Responsabilité civile privée, assistance 24h/24, inventaire du ménage.',
                             'options': [
@@ -33,7 +67,18 @@
                             'optionsAvailable': [
                                 {
                                     'name': 'Vol simple hors du domicile',
-                                    'prime': '30CHF',
+                                    'prime': '30 CHF',
+                                    'franchise' : { id: 400, name: '400'},
+                                    'franchisesAvailable':[
+                                        {
+                                            id: 100,
+                                            name : '100'
+                                        },
+                                        {
+                                            id : 400,
+                                            name : 400
+                                        }
+                                    ],
                                     'sommeAssurance' : {
                                         id: 1000,
                                         name: '1000'
@@ -55,56 +100,20 @@
                     'insuranceAvailable': []
                 },
                 {
-                    'name': 'Vol par effraction',
-                    'desc': '',
-                    'coverText': 'Vous n’êtes actuellement pas couvert pour le vol.',
+                    'name': 'Annulation de vacances',
+                    'desc': 'Il est possible que dans certains cas vous devriez annuler votre voyage (accident, licenciement, grèves, épidémies, etc.).',
+                    'coverText': 'Vous n\'êtes actuellement pas couvert pour l\'annulation d\'un voyage.',
                     'type': 'vol',
                     'covered': false,
                     'contracts': [],
                     'insuranceAvailable': [
                         {
-                            'name': 'Souscrire une assurance ménage',
-                            'link': 'http://www.mobi.ch'
-                        }
-                    ]
-                },
-                {
-                    'name': 'Vol de téléphone par effraction',
-                    'desc': '',
-                    'type': 'vol',
-                    'covered': true,
-                    'coverText': 'Vous êtes actuellement couvert pour le vol par effraction.',
-                    'contracts': [
-                        {
-                            'id': '10031987',
-                            'name': 'Assurance inventaire du ménage',
-                            'prime': '327,45CHF',
-                            'type': 'vol',
-                            'descType': 'Responsabilité civile privée, assistance 24h/24, inventaire du ménage.',
-                            'options': [
-                                {
-                                    'name': 'Assurance inventaire du ménage',
-                                    'prime': '30CHF',
-                                    'sommeAssurance' : {
-                                        id : 1000,
-                                        name : '1000'
-                                    },
-                                    'sommesAssuranceAvailable': [
-                                        {
-                                            id: 1000,
-                                            name: '1000'
-                                        },
-                                        {
-                                            id: 2000,
-                                            name: '2000'
-                                        }
-                                    ]
-                                }
-                            ]
+                            'name': 'Souscrire une assurance voyage',
+                            'desc': 'L\'assurance voyages de la Mobilière vous fournit une protection fiable pour tous les éléments de vos vacances, de votre séjour citadin ou de votre escapade d’une journée ou d’un week-end. Vous élaborez exactement le paquet dont vous avez besoin – de l\'assurance pour les frais d\'annulation au conseil juridique gratuit, en passant par l\'assurance pour vos bagages. Vous bénéficiez ainsi d\'une protection complète pendant toute une année, avant, pendant et après chaque voyage. Grâce à l\'assistance aux personnes 24h sur 24 et à l\'assistance aux véhicules à moteur 24 heures sur 24, vous pouvez nous joindre à tout moment en cas d\'urgence ou de sinistre, où que vous soyez dans le monde.',
+                            'link': 'https://secure.mobiliar.ch/proposal/pages/tourSituation.mobi'
                         }
                     ]
                 }
-
             ]
             ;
 

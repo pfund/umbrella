@@ -3,7 +3,7 @@
     angular
         .module('users')
         .controller('SinistreController', [
-            'sinistreService', '$mdSidenav', '$mdBottomSheet', '$log', '$q',
+            'sinistreService', '$mdSidenav', '$mdBottomSheet', '$mdDialog', '$log', '$q',
             SinistreController
         ])
         .controller('DemoCtrl', [
@@ -12,8 +12,24 @@
         ]);
     ;
 
-    function SinistreController(sinistreService, $mdSidenav, $mdBottomSheet, $log) {
+    function SinistreController(sinistreService, $mdSidenav, $mdBottomSheet, $mdDialog, $log) {
         var self = this;
+
+        self.sent = function(ev) {
+            // Appending dialog to document.body to cover sidenav in docs app
+            // Modal dialogs should fully cover application
+            // to prevent interaction outside of dialog
+            $mdDialog.show(
+                $mdDialog.alert()
+                    .parent(angular.element(document.querySelector('#content')))
+                    .clickOutsideToClose(true)
+                    .title('Merci')
+                    .textContent('Votre demande a bien été reçue et sera traitée dans les plus brefs délais.')
+                    .ariaLabel('Merci')
+                    .ok('Ok')
+                    .targetEvent(ev)
+            );
+        };
 
         self.showSinistreDescription = showSinistreDescription;
 
