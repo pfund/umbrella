@@ -7,7 +7,7 @@
             SinistreController
         ])
         .controller('DemoCtrl', [
-            'sinistreService', '$timeout', '$q', '$log',
+            'sinistreService', '$timeout', '$q', '$log', '$mdSidenav',
             DemoCtrl
         ]);
     ;
@@ -79,8 +79,13 @@
         }
     }
 
-    function DemoCtrl(sinistreService, $timeout, $q, $log) {
+    function DemoCtrl(sinistreService, $timeout, $q, $log, $mdSidenav) {
         var self = this;
+
+        self.toggleMenu = function() {
+            $mdSidenav("right").toggle();
+        };
+
         self.simulateQuery = false;
         self.isDisabled = false;
         self.repos = []; //loadAll();
