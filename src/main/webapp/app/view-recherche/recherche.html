@@ -37,36 +37,64 @@
 
     <md-content flex layout-padding layout="column" ng-show="ctrl.selectedItem">
 
-        <h2>{{ctrl.selectedItem.name}}
-            <md-button md-no-ink ng-click="sc.showSinistreDescription(ctrl.detail)">
-                <md-icon md-svg-icon="info"></md-icon>
-            </md-button>
-        </h2>
+        <md-toolbar class="md-theme-light">
+            <div class="md-toolbar-tools">
+                <h2>{{ctrl.selectedItem.name}}
+                    <md-button md-no-ink ng-click="sc.sinistreDescription($event, ctrl.detail)">
+                        <md-icon md-svg-icon="info"></md-icon>
+                    </md-button>
+                </h2>
+            </div>
+        </md-toolbar>
 
         <md-progress-circular md-mode="indeterminate"
                               ng-show="ctrl.selectedItem && !ctrl.detail">
         </md-progress-circular>
 
         <!-- Cas 1 : couvert par l'assurance ménage -->
-        <div ng-if="ctrl.detail.covered">
+        <div ng-if="ctrl.detail && ctrl.detail.covered">
 
-            <md-icon md-svg-icon="ok"></md-icon>
-            Vous êtes couvert pour ce risque par le(s) contrat(s) suivant(s) :
+            <md-content>
+
+                <h3 class="md-flex" style="color:#006600"><md-icon md-svg-icon="ok"></md-icon> Vous êtes couvert pour ce risque !</h3>
+            </md-content>
 
             <div ng-show="ctrl.detail.contracts" ng-repeat="contract in ctrl.detail.contracts">
 
-                <h3>{{contract.name}}</h3>
+                <md-list>
+                    <md-subheader class="md-no-sticky">{{contract.name}}</md-subheader>
+                    <md-list-item>
+                        <p>{{contract.descType}}</p>
+                    </md-list-item>
+                    <md-list-item>
+                        <p> Numéro de police </p>
+                        <p> {{contract.id}} </p>
+                    </md-list-item>
 
-                Numéro de police : {{contract.id}}<br>
-                {{contract.descType}}<br>
-                Votre prime annuelle est de <strong>{{contract.prime}}</strong>.
+                    <md-list-item>
+                        <p> Somme d'assurance </p>
 
-                <br><br>
+                        <p> {{contract.sommeAssurance}} </p>
+                    </md-list-item>
+
+                    <md-list-item>
+                        <p> Franchise </p>
+
+                        <p> {{contract.franchise}} </p>
+                    </md-list-item>
+
+                    <md-list-item>
+                        <p> Prime </p>
+
+                        <p> {{contract.prime}} </p>
+                    </md-list-item>
+
+                    <md-subheader class="md-no-sticky">Modifier l'assurance</md-subheader>
+
+                </md-list>
 
                 <div ng-show="contract.options"
                      ng-repeat="option in contract.options">
-
-                    <h3>Modifier l'assurance</h3>
 
                     <md-content layout-gt-sm="row" layout-padding ng-if="ctrl.detail">
 
@@ -100,7 +128,7 @@
         </div>
 
         <!-- Cas 2 et 3 : pas couvert -->
-        <div ng-if="!ctrl.detail.covered">
+        <div ng-if="ctrl.detail && !ctrl.detail.covered">
 
             <md-icon md-svg-icon="notok"></md-icon>
             <strong>Vous n'êtes pas couvert pour ce risque.</strong>
@@ -164,7 +192,7 @@
             <div ng-show="ctrl.detail.insuranceAvailable"
                  ng-repeat="insurance in ctrl.detail.insuranceAvailable">
                 {{insurance.desc}}
-                <md-button class="md-raised">{{insurance.name}}</md-button>
+                <md-button class="md-raised" ng-click="sc.sent($event)">{{insurance.name}}</md-button>
             </div>
 
         </div>

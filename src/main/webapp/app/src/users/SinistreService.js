@@ -27,6 +27,8 @@
                             'prime': '212,30 CHF',
                             'type': 'vol',
                             'descType': 'Responsabilité civile privée, assistance 24h/24, inventaire du ménage.',
+                            'sommeAssurance': 100000,
+                            'franchise' : 400,
                             'options': [
                                 {
                                     'name': 'Assurance ménage',

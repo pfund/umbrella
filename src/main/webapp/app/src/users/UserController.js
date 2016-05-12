@@ -31,6 +31,22 @@
             );
         };
 
+        self.sinistreDescription = function(ev, selectedSinistre) {
+            // Appending dialog to document.body to cover sidenav in docs app
+            // Modal dialogs should fully cover application
+            // to prevent interaction outside of dialog
+            $mdDialog.show(
+                $mdDialog.alert()
+                    .parent(angular.element(document.querySelector('#main')))
+                    .clickOutsideToClose(true)
+                    .title(selectedSinistre.name)
+                    .textContent(selectedSinistre.desc)
+                    .ariaLabel(selectedSinistre.name)
+                    .ok('Ok')
+                    .targetEvent(ev)
+            );
+        };
+
         self.showSinistreDescription = showSinistreDescription;
 
         /**
