@@ -39,10 +39,9 @@
 
 <div flex="100" layout="column" ng-controller="DemoCtrl as ctrl" tabIndex="-1" role="main" class="md-whiteframe-z2">
 
-    <md-toolbar layout="row" layout-align="end" style="background-color: #FFFFFF;">
+    <div layout="row" layout-align="end">
         <md-content hide-gt-sm flex layout="column" layout-align="start" layout-padding>
-
-            <img ng-src="assets/img/logo.png" style="width: 80%; height: 80%; min-width: 100px; max-width: 432px">
+            <img ng-src="assets/img/logo.png" style="min-width: 100px; max-width: 432px; max-height:100px">
         </md-content>
         <md-list layout="row">
             <md-list-item>
@@ -61,13 +60,13 @@
                 </md-button>
             </md-list-item>
         </md-list>
-    </md-toolbar>
+    </div>
 
-    <md-content hide show-gt-sm flex layout="column" layout-align="end center" style="min-height:100px">
-        <img ng-src="assets/img/logo.png" style="width: 80%; height: 80%; min-width: 100px; max-width: 432px">
+    <md-content hide show-gt-sm layout="column" layout-align="none center" style="height:100px;">
+        <img ng-src="assets/img/logo.png" style="min-width: 100px; max-width: 432px; max-height:100px">
     </md-content>
 
-    <div flex layout="row" ng-cloak style="min-height: 75px">
+    <div flex layout="row" ng-cloak style="min-height: 75px; max-height: 80px">
 
         <div flex="0" flex-gt-sm="33"></div>
         <md-content flex layout-padding layout="column" layout-align="start none">
