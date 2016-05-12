@@ -108,7 +108,7 @@
                 },
                 {
                     'name': 'Vol par effraction d\'un home cinema',
-                    'desc': 'Un voleur s’introduit chez vous par effraction (briser une vitre, enfoncer une porte, etc.) et dérobe des biens de l’inventaire du ménage.',
+                    'desc': 'Un voleur s\'introduit chez vous par effraction (briser une vitre, enfoncer une porte, etc.) et dérobe des biens de l\'inventaire du ménage.',
                     'type': 'vol',
                     'covered': true,
                     'coverText': 'Vous êtes actuellement couvert pour le vol par effraction.',
@@ -205,7 +205,7 @@
                     'insuranceAvailable': [
                         {
                             'name': 'Assurance voyage',
-                            'desc': 'L\'assurance voyages de la Mobilière vous fournit une protection fiable pour tous les éléments de vos vacances, de votre séjour citadin ou de votre escapade d’une journée ou d’un week-end. Vous élaborez exactement le paquet dont vous avez besoin – de l\'assurance pour les frais d\'annulation au conseil juridique gratuit, en passant par l\'assurance pour vos bagages. Vous bénéficiez ainsi d\'une protection complète pendant toute une année, avant, pendant et après chaque voyage. Grâce à l\'assistance aux personnes 24h sur 24 et à l\'assistance aux véhicules à moteur 24 heures sur 24, vous pouvez nous joindre à tout moment en cas d\'urgence ou de sinistre, où que vous soyez dans le monde.',
+                            'desc': 'L\'assurance voyages de la Mobilière vous fournit une protection fiable pour tous les éléments de vos vacances, de votre séjour citadin ou de votre escapade d\'une journée ou d\'un week-end. Vous élaborez exactement le paquet dont vous avez besoin à de l\'assurance pour les frais d\'annulation au conseil juridique gratuit, en passant par l\'assurance pour vos bagages. Vous bénéficiez ainsi d\'une protection complète pendant toute une année, avant, pendant et après chaque voyage. Grâce à l\'assistance aux personnes 24h sur 24 et à l\'assistance aux véhicules à moteur 24 heures sur 24, vous pouvez nous joindre à tout moment en cas d\'urgence ou de sinistre, où que vous soyez dans le monde.',
                             'link': 'https://secure.mobiliar.ch/proposal/pages/tourSituation.mobi'
                         }
                     ]
@@ -287,7 +287,7 @@
  <option value="10">Tempête</option>
  <option value="11">Vol</option>
  <option value="12">Vitrages du mobilier</option>
- <option value="15">Modification de l’assurance</option>
+ <option value="15">Modification de l'assurance</option>
  <option value="17">Produits surgelés</option>
  <option value="19">Construction mobilière</option>
  <option value="21">Notebook</option>
