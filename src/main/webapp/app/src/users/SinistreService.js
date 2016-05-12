@@ -2,7 +2,7 @@
   'use strict';
 
   angular.module('users')
-         .service('sinistreService', ['$q', '$timeout', SinistreService]);
+         .service('sinistreService', ['$q', '$timeout', '$http', SinistreService]);
 
   /**
    * Sinistres DataService
@@ -12,7 +12,7 @@
    * @returns {{loadAll: Function}}
    * @constructor
    */
-  function SinistreService($q, $timeout){
+  function SinistreService($q, $timeout, $http){
     var sinistres = [
       {'name':'Dommages corp./matériels entrepr. du bâtiment', 'type' : 'dommages'},
       {'name':'Incendie', 'type' : 'dommages'},
@@ -37,8 +37,8 @@
       {'name':'Vol simple hors du domicile', 'type' : 'vol'},
       {'name':'Vêtements et casque de moto', 'type' : 'vol'},
       {'name':'Vol simple au domicile', 'type' : 'vol'},
-      {'name':'Détroussement', 'type' : 'vol'},
-      {'name':'Vol avec effraction / détroussement', 'type' : 'vol'}
+      {'name':'Détroussement', 'type' : 'ol'},
+      {'name':'Vol avec effraction / détrovussement', 'type' : 'vol'}
     ];
 
     // Promise-based API
@@ -56,6 +56,20 @@
         //  "coverTxt" : coverTxt
         //} ); }, 1000, false);
         //return deferred.promise;
+
+        // Store search in DB
+        var documentToStore = {
+          "name" : sinistre.name,
+          "type" : sinistre.type,
+          "customer": "Thomas Damiot"
+        };
+
+        $http.post('https://api.mlab.com/api/1/databases/umbrella/collections/searcheddamages?apiKey=HZv0QNkWyHn5AF5Ax0PuDaW8X0p94gia',
+                    documentToStore
+        )
+            .error(function (data, status) {
+              console.log("Erreur lors de la sauvegarde de la recherche " + data + " " + status);
+            });
 
         var ret;
 
