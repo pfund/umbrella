@@ -12,4 +12,18 @@
             <div style="text-align: center; font-weight: bold">Répartition des recherches de couverture par type de risque</div>
         </div>
     </div>
+
+    <md-list>
+        <md-subheader class="md-no-sticky">Recherches par type</md-subheader>
+        <md-list-item ng-repeat="item in ctrl.searchStatsByType">
+            <p>{{item._id }}</p>
+            <p>{{item.count}}</p>
+        </md-list-item>
+        <md-divider></md-divider>
+        <md-subheader class="md-no-sticky">Recherches par nom</md-subheader>
+        <md-list-item ng-repeat="item in ctrl.searchStatsByName">
+            <p>{{item._id }}</p>
+            <p>{{item.count}}</p>
+        </md-list-item>
+    </md-list>
 </div>

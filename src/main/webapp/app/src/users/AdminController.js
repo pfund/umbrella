@@ -10,6 +10,7 @@
   function AdminController(adminService, $scope) {
     var self = this;
     adminService.getSearchStatsByType().then(function(response) {
+        self.searchStatsByType = response.data;
         $scope.labelsPie = [];
         $scope.dataPie = [];
 
@@ -22,6 +23,7 @@
     });
 
       adminService.getSearchStatsByName().then(function(response) {
+          self.searchStatsByName = response.data;
         $scope.labelsBarChart = [];
         $scope.seriesBarChart = ["Nombre de recherches "];
         $scope.dataBarChart = [];
