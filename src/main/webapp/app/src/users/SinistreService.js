@@ -33,11 +33,11 @@
                                 {
                                     'name': 'Assurance ménage',
                                     'prime': '30CHF',
-                                    'franchise' : { id: 400, name: '400'},
+                                    'franchise' : { id: 400, name: 400},
                                     'franchisesAvailable':[
                                         {
                                             id: 100,
-                                            name : '100'
+                                            name : 100
                                         },
                                         {
                                             id : 400,
@@ -63,28 +63,27 @@
                             'prime': '212,30 CHF',
                             'type': 'Minima',
                             'descType': 'Responsabilité civile privée, assistance 24h/24, inventaire du ménage.',
+                            'sommeAssurance': 100000,
+                            'franchise' : 400,
                             'options': [
                                 {}
                             ],
                             'optionsAvailable': [
                                 {
-                                    'name': 'Vol simple hors du domicile',
+                                    'name': 'vol simple hors du domicile',
                                     'prime': '30 CHF',
-                                    'franchise' : { id: 400, name: '400'},
+                                    'franchise' : 400,
                                     'franchisesAvailable':[
                                         {
                                             id: 100,
-                                            name : '100'
+                                            name : 100
                                         },
                                         {
                                             id : 400,
                                             name : 400
                                         }
                                     ],
-                                    'sommeAssurance' : {
-                                        id: 1000,
-                                        name: '1000'
-                                    },
+                                    'sommeAssurance' : 1000,
                                     'sommesAssuranceAvailable': [
                                         {
                                             id: 1000,

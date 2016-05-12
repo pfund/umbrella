@@ -51,12 +51,18 @@
                               ng-show="ctrl.selectedItem && !ctrl.detail">
         </md-progress-circular>
 
-        <!-- Cas 1 : couvert par l'assurance ménage -->
-        <div ng-if="ctrl.detail && ctrl.detail.covered">
+        <!-- Tous les cas non gérés -->
+        <div ng-if="ctrl.detail && ctrl.detail.other"></div>
+
+
+        <!-- Cas 1 : couvert par l'assurance ménage-->
+        <div ng-if="ctrl.detail && !ctrl.detail.other  && ctrl.detail.covered">
 
             <md-content>
-
-                <h3 class="md-flex" style="color:#006600"><md-icon md-svg-icon="ok"></md-icon> Vous êtes couvert pour ce risque !</h3>
+                <h3 class="md-flex" style="color:#006600">
+                    <md-icon md-svg-icon="ok"></md-icon>
+                    Vous êtes couvert pour ce risque !
+                </h3>
             </md-content>
 
             <div ng-show="ctrl.detail.contracts" ng-repeat="contract in ctrl.detail.contracts">
@@ -68,25 +74,26 @@
                     </md-list-item>
                     <md-list-item>
                         <p> Numéro de police </p>
+
                         <p> {{contract.id}} </p>
                     </md-list-item>
 
                     <md-list-item>
                         <p> Somme d'assurance </p>
 
-                        <p> {{contract.sommeAssurance}} </p>
+                        <p> {{contract.sommeAssurance}} CHF</p>
                     </md-list-item>
 
                     <md-list-item>
                         <p> Franchise </p>
 
-                        <p> {{contract.franchise}} </p>
+                        <p> {{contract.franchise}} CHF</p>
                     </md-list-item>
 
                     <md-list-item>
                         <p> Prime </p>
 
-                        <p> {{contract.prime}} </p>
+                        <p> {{contract.prime}} CHF</p>
                     </md-list-item>
 
                     <md-subheader class="md-no-sticky">Modifier l'assurance</md-subheader>
@@ -128,68 +135,91 @@
         </div>
 
         <!-- Cas 2 et 3 : pas couvert -->
-        <div ng-if="ctrl.detail && !ctrl.detail.covered">
+        <div ng-if="ctrl.detail && !ctrl.detail.other && !ctrl.detail.covered">
 
-            <md-icon md-svg-icon="notok"></md-icon>
-            <strong>Vous n'êtes pas couvert pour ce risque.</strong>
-            <br>
+            <md-content>
+                <h3 class="md-flex" style="color:#880000">
+                    <md-icon md-svg-icon="notok"></md-icon>
+                    Vous n'êtes pas couvert pour ce risque !
+                </h3>
+            </md-content>
+
             {{ctrl.detail.coverText}}
 
             <div ng-show="ctrl.detail.contracts" ng-repeat="contract in ctrl.detail.contracts">
-                <h3>{{contract.name}}</h3>
 
-                Numéro de police : {{contract.id}}<br>
-                Type du contrat : {{contract.type}}<br>
-                {{contract.descType}}<br>
-                Votre prime annuelle est de <strong>{{contract.prime}}</strong>.
+                <md-list>
+                    <md-subheader class="md-no-sticky">{{contract.name}}</md-subheader>
+                    <md-list-item>
+                        <p>{{contract.descType}}</p>
+                    </md-list-item>
+                    <md-list-item>
+                        <p> Numéro de police </p>
 
-                <br><br>
+                        <p> {{contract.id}} </p>
+                    </md-list-item>
+
+                    <md-list-item>
+                        <p> Somme d'assurance </p>
+
+                        <p> {{contract.sommeAssurance}} CHF</p>
+                    </md-list-item>
+
+                    <md-list-item>
+                        <p> Franchise </p>
+
+                        <p> {{contract.franchise}} CHF</p>
+                    </md-list-item>
+
+                    <md-list-item>
+                        <p> Prime </p>
+
+                        <p> {{contract.prime}} CHF</p>
+                    </md-list-item>
+
+                </md-list>
 
                 <!-- Cas 2 : souscrire à une option -->
                 <div ng-show="contract.optionsAvailable"
                      ng-repeat="option in contract.optionsAvailable">
 
-                    <h3>Souscrire à une option</h3>
+                    <md-list>
+                        <md-subheader class="md-no-sticky">Souscrire l'option {{option.name}}</md-subheader>
+                        <md-list-item>
+                            <md-input-container>
+                                <label>
+                                    Somme d'assurance
+                                </label>
+                                <input type="number" step="1" ng-model="option.sommeAssurance">
 
-                    <div layout="row">
-                        <div flex>{{option.name}}</div>
-                    </div>
+                            </md-input-container>
+                        </md-list-item>
+                        <md-list-item>
+                            <p>
+                                <md-input-container>
 
-                    <div flex layout="row">
-                        <div flex>Somme d'assurance</div>
-                        <div flex>
-                            <md-select ng-model="option.sommeAssurance"
-                                       ng-model-options="{trackBy: '$value.id'}">
-                                <md-option ng-value="somme"
-                                           ng-repeat="somme in option.sommesAssuranceAvailable">{{somme.name}}
-                                </md-option>
-                            </md-select>
-                        </div>
-                    </div>
+                                    <label>
+                                        Franchise
+                                    </label>
 
-                    <div flex layout="row">
-                        <div flex>
-                            Franchise
-                        </div>
-                        <div flex>
-                            <md-slider ng-model="option.franchise" step="100" min="100" max="500">
-                            </md-slider>
-                        </div>
-                        <div flex>
-                            {{option.franchise}}
-                        </div>
-                    </div>
+                                    <input type="number" step="100" ng-model="option.franchise">
 
-                    <div flex layout-align="center">
-                        <div flex>
-                            <md-button class="md-raised">Ajouter l'option</md-button>
+                                </md-input-container>
+                            </p>
+                            <p>
+                                <md-slider ng-model="option.franchise" step="100" min="100" max="500">
+                                </md-slider>
+                            </p>
+                        </md-list-item>
+                        <div layout-align="center">
+                            <md-button class="md-raised" ng-click="sc.sent($event)">Envoyer</md-button>
                         </div>
-                    </div>
+                    </md-list>
                 </div>
             </div>
 
             <!-- Cas 3 : souscrire à une assurance -->
-            <div ng-show="ctrl.detail.insuranceAvailable"
+            <div ng-show="ctrl.detail && !ctrl.detail.other && ctrl.detail.insuranceAvailable"
                  ng-repeat="insurance in ctrl.detail.insuranceAvailable">
                 {{insurance.desc}}
                 <md-button class="md-raised" ng-click="sc.sent($event)">{{insurance.name}}</md-button>
