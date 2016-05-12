@@ -227,8 +227,22 @@
             <!-- Cas 3 : souscrire à une assurance -->
             <div ng-show="ctrl.detail && !ctrl.detail.other && ctrl.detail.insuranceAvailable"
                  ng-repeat="insurance in ctrl.detail.insuranceAvailable">
-                {{insurance.desc}}
-                <md-button class="md-raised" ng-click="sc.sent($event)">{{insurance.name}}</md-button>
+
+                <md-content>
+
+                    <md-card>
+                        <img ng-src="assets/img/voyage.jpg">
+                        <md-card-title>
+                            <md-card-title-text>
+                                <span class="md-headline">{{insurance.name}}</span>
+                                <span class="md-subhead">{{insurance.desc}}</span>
+                            </md-card-title-text>
+                        </md-card-title>
+                    </md-card>
+
+                </md-content>
+
+                <md-button class="md-raised" ng-click="sc.sent($event)">Souscrire une {{insurance.name}}</md-button>
             </div>
 
         </div>

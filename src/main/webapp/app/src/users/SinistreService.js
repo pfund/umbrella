@@ -106,13 +106,13 @@
                 {
                     'name': 'Annulation de vacances',
                     'desc': 'Il est possible que dans certains cas vous devriez annuler votre voyage (accident, licenciement, grèves, épidémies, etc.).',
-                    'coverText': 'Vous n\'êtes actuellement pas couvert pour l\'annulation d\'un voyage.',
+                    'coverText': '',
                     'type': 'vol',
                     'covered': false,
                     'contracts': [],
                     'insuranceAvailable': [
                         {
-                            'name': 'Souscrire une assurance voyage',
+                            'name': 'Assurance voyage',
                             'desc': 'L\'assurance voyages de la Mobilière vous fournit une protection fiable pour tous les éléments de vos vacances, de votre séjour citadin ou de votre escapade d’une journée ou d’un week-end. Vous élaborez exactement le paquet dont vous avez besoin – de l\'assurance pour les frais d\'annulation au conseil juridique gratuit, en passant par l\'assurance pour vos bagages. Vous bénéficiez ainsi d\'une protection complète pendant toute une année, avant, pendant et après chaque voyage. Grâce à l\'assistance aux personnes 24h sur 24 et à l\'assistance aux véhicules à moteur 24 heures sur 24, vous pouvez nous joindre à tout moment en cas d\'urgence ou de sinistre, où que vous soyez dans le monde.',
                             'link': 'https://secure.mobiliar.ch/proposal/pages/tourSituation.mobi'
                         }
