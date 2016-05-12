@@ -36,9 +36,13 @@
 
 <body layout="row" ng-app="starterApp" ng-controller="UserController as ul" ng-cloak>
 
-<div flex layout="column" ng-controller="DemoCtrl as ctrl" tabIndex="-1" role="main" class="md-whiteframe-z2">
+<div flex="100" layout="column" ng-controller="DemoCtrl as ctrl" tabIndex="-1" role="main" class="md-whiteframe-z2">
 
     <md-toolbar layout="row" layout-align="end" style="background-color: #FFFFFF;">
+        <md-content hide-gt-sm flex layout="column" layout-align="start" layout-padding>
+
+            <img ng-src="assets/img/logo.png" style="width: 80%; height: 80%; min-width: 100px; max-width: 432px">
+        </md-content>
         <md-list layout="row">
             <md-list-item>
                 <md-button ng-class="selected" href="../app/index.html">
@@ -58,14 +62,11 @@
         </md-list>
     </md-toolbar>
 
-    <div flex="20" layout="column">
-    </div>
-
-    <md-content layout="column" layout-align="end center">
+    <md-content hide show-gt-sm flex layout="column" layout-align="end center" style="min-height:100px">
         <img ng-src="assets/img/logo.png" style="width: 80%; height: 80%; min-width: 100px; max-width: 432px">
     </md-content>
 
-    <div layout="row" ng-cloak>
+    <div flex layout="row" ng-cloak style="min-height: 75px">
 
         <div flex="0" flex-gt-sm="33"></div>
         <md-content flex layout-padding layout="column" layout-align="start none">
@@ -98,8 +99,8 @@
         <div flex="0" flex-gt-sm="33"></div>
     </div>
 
-    <div flex layout="row" layout-align="center center" ng-cloak>
-        <md-content layout-align="center center" ng-show="ctrl.selectedItem">
+    <div flex layout="row" ng-cloak-align="none center" layout-padding>
+        <md-content flex ng-show="ctrl.selectedItem">
 
             <h2>{{ctrl.selectedItem.name}}</h2>
             <md-progress-circular md-mode="indeterminate"
@@ -133,9 +134,6 @@
                 </md-button>
         </span>
         </md-content>
-    </div>
-
-    <div flex="20" layout="column" id="contact">
     </div>
 
     <md-toolbar layout="row" layout-align="center end" style="background-color: #FFFFFF">
