@@ -55,6 +55,11 @@
         self.querySearch = querySearch;
         self.selectedItemChange = selectedItemChange;
         self.searchTextChange = searchTextChange;
+        self.selectedSomme = {
+            id : 1000,
+            name : '1000'
+        };
+
         // ******************************
         // Internal methods
         // ******************************

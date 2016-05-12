@@ -14,60 +14,99 @@
      */
     function SinistreService($q, $timeout, $http) {
         var sinistres = [
-            {'name': 'Dommages corp./matériels entrepr. du bâtiment', 'type': 'dommages'},
-            {'name': 'Incendie', 'type': 'dommages'},
-            {'name': 'Incendie choses spéciales', 'type': 'dommages'},
-            {'name': 'Dommages corporels et matériels CB/RS', 'type': 'dommages'},
-            {'name': 'Dommages naturels', 'type': 'dommages'},
-            {'name': 'Dommages au véhicule parqué', 'type': 'dommages', coveredForUser1: false},
-            {'name': 'Choses transportées', 'type': 'dommages'},
-            {'name': 'Dégâts d\'eau', 'type': 'dommages'},
-            {'name': 'Dommages corporels/matériels industrie hôtelière', 'type': 'dommages'},
-            {'name': 'Dommages corporels et matériels couverture de base', 'type': 'dommages'},
-            {'name': 'Eau', 'type': 'dommages'},
-            {'name': 'Dégâts d\'eau bâtiment et frais', 'type': 'dommages'},
-            {'name': 'Dommages naturels', 'type': 'dommages'},
-            {'name': 'PC, laptop, agenda électron., écrans plats, beamer: PC Apple', 'type': 'dommages'},
-            {'name': 'Détérioration de bagages', 'type': 'dommages'},
-            {'name': 'Bris de vitrages du bâtiment', 'type': 'dommages'},
-            {'name': 'Bris de vitrages du mobilier', 'type': 'dommages'},
-            {'name': 'Risque spécial dommages naturels', 'type': 'dommages'},
-            {
-                'name': 'Vol avec effraction',
-                'desc': 'Le vol avec effraction implique deux conditions : le voleur doit avoir pénétré avec effraction (dans votre habitation ou votre voiture) et avoir emporté quelque chose.',
-                'type': 'vol',
-                'covered': true,
-                'contracts': [123456789, 987456321]
-            },
-            {'name': 'Bagages', 'type': 'vol'},
-            {'name': 'Vol simple hors du domicile', 'type': 'vol'},
-            {'name': 'Vêtements et casque de moto', 'type': 'vol'},
-            {'name': 'Vol simple au domicile', 'type': 'vol'},
-            {'name': 'Détroussement', 'type': 'vol'},
-            {'name': 'Vol avec effraction / détroussement', 'type': 'vol'},
-            {
-                'name': 'Vol de téléphone en déplacement',
-                'desc': 'Lors d\'un déplacement vous vous faites volez un objet de l\'inventaire du ménage.',
-                'type': 'vol',
-                'covered': false,
-                'coverText':'Vous êtes actuellement couvert pour le vol simple, le détroussement ainsi que le vol par effraction. Il vous est cependant possible de souscrire à une option liée à votre assurance ménage.',
-                'contracts': [
-                    {
-                        'id': '13021196',
-                        'name': 'Assurance ménage',
-                        'prime': '147,50CHF',
-                        'type': 'Minima',
-                        'descType': 'Responsabilité civile privée, assistance 24h/24, inventaire du ménage.',
-                        'options': [
-                            {
-                                'name': 'Vol simple hors du domicile',
-                                'prime': '30CHF'
-                            }
-                        ]
-                    }
-                ]
-            }
-        ];
+                {
+                    'name': 'Vol de téléphone lors d\'un déplacement',
+                    'desc': 'Lors d\'un déplacement vous vous faites volez un objet de l\'inventaire du ménage.',
+                    'type': 'vol',
+                    'covered': false,
+                    'coverText': 'Vous êtes actuellement couvert pour le vol simple, le détroussement ainsi que le vol par effraction. Il vous est cependant possible de souscrire à une option liée à votre assurance ménage.',
+                    'contracts': [
+                        {
+                            'id': '13021196',
+                            'name': 'Assurance ménage',
+                            'prime': '147,50CHF',
+                            'type': 'Minima',
+                            'descType': 'Responsabilité civile privée, assistance 24h/24, inventaire du ménage.',
+                            'options': [
+                                {}
+                            ],
+                            'optionsAvailable': [
+                                {
+                                    'name': 'Vol simple hors du domicile',
+                                    'prime': '30CHF',
+                                    'sommeAssurance' : {
+                                        id: 1000,
+                                        name: '1000'
+                                    },
+                                    'sommesAssuranceAvailable': [
+                                        {
+                                            id: 1000,
+                                            name: '1000'
+                                        },
+                                        {
+                                            id: 2000,
+                                            name: '2000'
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    'insuranceAvailable': []
+                },
+                {
+                    'name': 'Vol par effraction',
+                    'desc': '',
+                    'coverText': 'Vous n’êtes actuellement pas couvert pour le vol.',
+                    'type': 'vol',
+                    'covered': false,
+                    'contracts': [],
+                    'insuranceAvailable': [
+                        {
+                            'name': 'Souscrire une assurance ménage',
+                            'link': 'http://www.mobi.ch'
+                        }
+                    ]
+                },
+                {
+                    'name': 'Vol de téléphone par effraction',
+                    'desc': '',
+                    'type': 'vol',
+                    'covered': true,
+                    'coverText': 'Vous êtes actuellement couvert pour le vol par effraction.',
+                    'contracts': [
+                        {
+                            'id': '10031987',
+                            'name': 'Assurance inventaire du ménage',
+                            'prime': '327,45CHF',
+                            'type': 'vol',
+                            'descType': 'Responsabilité civile privée, assistance 24h/24, inventaire du ménage.',
+                            'options': [
+                                {
+                                    'name': 'Assurance inventaire du ménage',
+                                    'prime': '30CHF',
+                                    'sommeAssurance' : {
+                                        id : 1000,
+                                        name : '1000'
+                                    },
+                                    'sommesAssuranceAvailable': [
+                                        {
+                                            id: 1000,
+                                            name: '1000'
+                                        },
+                                        {
+                                            id: 2000,
+                                            name: '2000'
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+
+            ]
+            ;
 
         // Promise-based API
         var coverTxt = "Votre couverture est OK";
@@ -126,7 +165,8 @@
         };
     }
 
-})();
+})
+();
 
 /**
  * http://www.myhome-mobiliar.ch/fr/#!/overlay/spotlist
