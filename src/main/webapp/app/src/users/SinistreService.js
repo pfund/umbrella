@@ -57,13 +57,28 @@
         //} ); }, 1000, false);
         //return deferred.promise;
 
+        // Store stats in DB
+        $http.put('https://api.mlab.com/api/1/databases/umbrella/collections/searchstatsbytype?apiKey=HZv0QNkWyHn5AF5Ax0PuDaW8X0p94gia&q={"_id":"'+sinistre.type+'"}&u=true',
+            {
+              "$inc":{"count": 1}
+            }
+        ).error(function (data, status) {
+          console.log("Erreur lors de la sauvegarde des stats " + data + " " + status);
+        });
+        $http.put('https://api.mlab.com/api/1/databases/umbrella/collections/searchstatsbyname?apiKey=HZv0QNkWyHn5AF5Ax0PuDaW8X0p94gia&q={"_id":"'+sinistre.name+'"}&u=true',
+            {
+              "$inc":{"count": 1}
+            }
+        ).error(function (data, status) {
+          console.log("Erreur lors de la sauvegarde des stats " + data + " " + status);
+        });
+
         // Store search in DB
         var documentToStore = {
           "name" : sinistre.name,
           "type" : sinistre.type,
           "customer": "Thomas Damiot"
         };
-
         $http.post('https://api.mlab.com/api/1/databases/umbrella/collections/searcheddamages?apiKey=HZv0QNkWyHn5AF5Ax0PuDaW8X0p94gia',
                     documentToStore
         )
