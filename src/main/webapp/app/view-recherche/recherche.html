@@ -1,6 +1,6 @@
 <div flex layout="row" ng-cloak style="min-height: 75px; max-height: 80px">
 
-    <div flex="0" flex-gt-sm="33"></div>
+    <div flex="0" flex-gt-sm="30"></div>
     <md-content flex layout-padding layout="column" layout-align="start none">
         <form ng-submit="$event.preventDefault()">
             <md-autocomplete
@@ -29,7 +29,7 @@
         </form>
     </md-content>
 
-    <div flex="0" flex-gt-sm="33"></div>
+    <div flex="0" flex-gt-sm="30"></div>
 </div>
 
 <div layout="row" ng-cloak layout-align="center center">
@@ -43,9 +43,9 @@
         </md-progress-circular>
 
         <!-- Tous les cas non gérés -->
-        <div ng-if="ctrl.detail && ctrl.detail.other" layout-fill>
+        <div ng-if="ctrl.detail && ctrl.detail.other" layout-fill layout-padding>
 
-                <md-card layout-fill style="display:inline-block">
+                <md-card style="display:inline-block" layout-fill>
                     <md-card-header>
                         <md-card-header-text>
                             <md-content layout="row">
@@ -91,7 +91,7 @@
         </div>
 
         <!-- Cas 1 : couvert par l'assurance ménage-->
-        <div ng-if="ctrl.detail && !ctrl.detail.other  && ctrl.detail.covered" layout-fill>
+        <div ng-if="ctrl.detail && !ctrl.detail.other  && ctrl.detail.covered" layout-fill layout-padding>
 
             <md-card layout-fill style="display:inline-block">
                 <md-card-header>
@@ -204,7 +204,7 @@
         </div>
 
         <!-- Cas 2 : pas couvert -->
-        <div layout-fill
+        <div layout-fill layout-padding
              ng-if="ctrl.detail && !ctrl.detail.other && !ctrl.detail.covered && ctrl.detail.contracts && !ctrl.detail.insuranceAvailable">
             <md-card layout-fill style="display:inline-block">
                 <md-card-header>
@@ -319,7 +319,7 @@
 
         <!-- Cas 3 : souscrire à une assurance -->
         <md-content ng-show="ctrl.detail && !ctrl.detail.other && !ctrl.detail.covered && ctrl.detail.insuranceAvailable"
-                    ng-repeat="insurance in ctrl.detail.insuranceAvailable" layout="row" layout-fill>
+                    ng-repeat="insurance in ctrl.detail.insuranceAvailable" layout="row" layout-fill layout-padding>
 
                 <md-card layout-fill style="display:inline-block">
                     <md-card-header>
@@ -345,7 +345,7 @@
                         </md-card-header-text>
                     </md-card-header>
 
-                    <img ng-src="assets/img/voyage.jpg" style="max-width:400px">
+                    <img ng-src="assets/img/voyage.jpg">
                     <md-card-title>
                         <md-card-title-text>
                             <span class="md-headline">{{insurance.name}}</span>
@@ -353,7 +353,7 @@
                         </md-card-title-text>
                     </md-card-title>
                     <md-card-actions layout="row" layout-align="end center">
-                        <md-button class="md-raised" ng-click="sc.sent($event)">Souscrire une {{insurance.name}}
+                        <md-button class="md-raised" ng-click="sc.sent($event)">Souscrire
                         </md-button>
                     </md-card-actions>
                 </md-card>
