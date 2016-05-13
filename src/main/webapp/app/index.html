@@ -49,25 +49,28 @@
     <md-toolbar class="md-toolbar-tools <md-theme-light">
         <h1 class="md-toolbar-tools">Menu</h1>
         <span flex></span>
-        <button class="md-icon-button md-button md-ink-ripple" type="button" ng-click="ctrl.toggleMenu()" hide-gt-sm="" aria-label="Toggle Menu">
+        <button class="md-icon-button md-button md-ink-ripple" type="button" ng-click="ctrl.toggleMenu()" hide-gt-sm=""
+                aria-label="Toggle Menu">
             <md-icon md-svg-src="assets/svg/menu.svg" class="ng-scope" aria-hidden="true"></md-icon>
-            <div class="md-ripple-container"></div></button>
+            <div class="md-ripple-container"></div>
+        </button>
     </md-toolbar>
     <md-list layout="column">
-            <md-list-item>
-                <md-button ng-class="selected" href="#/recherche" ng-click="ctrl.toggleMenu()" style="width: 200px;">
-                    {{'Risques' | uppercase}}
-                </md-button>
-            </md-list-item>
-            <md-list-item>
-                <md-button ng-class="" href="#/admin" ng-click="ctrl.toggleMenu()" style="width: 200px;">
-                    {{'Admin' | uppercase}}
-                </md-button>
-            </md-list-item>
-        </md-list>
+        <md-list-item>
+            <md-button ng-class="selected" href="#/recherche" ng-click="ctrl.toggleMenu()" style="width: 200px;">
+                {{'Risques' | uppercase}}
+            </md-button>
+        </md-list-item>
+        <md-list-item>
+            <md-button ng-class="" href="#/admin" ng-click="ctrl.toggleMenu()" style="width: 200px;">
+                {{'Admin' | uppercase}}
+            </md-button>
+        </md-list-item>
+    </md-list>
 </md-sidenav>
 
-<div id="main" layout="column" layout-fill flex="grow" ng-controller="SinistreController as sc" tabIndex="-1" role="main" style="height:100%">
+<div id="main" layout="column" layout-fill flex="grow" ng-controller="SinistreController as sc" tabIndex="-1"
+     role="main" style="height:100%">
     <div>
         <div layout="row">
             <div flex="0" flex-gt-sm="25">&nbsp;</div>
@@ -88,15 +91,19 @@
                             </md-button>
                         </md-list-item>
                     </md-list>
-                    <button class="md-icon-button md-button md-ink-ripple" type="button" ng-click="ctrl.toggleMenu()" hide-gt-sm="" aria-label="Toggle Menu">
-                        <md-icon md-svg-src="assets/svg/menu.svg" class="ng-scope" aria-hidden="true" style="padding-top: 5px;"></md-icon>
-                        <div class="md-ripple-container"></div></button>
+                    <button class="md-icon-button md-button md-ink-ripple" type="button" ng-click="ctrl.toggleMenu()"
+                            hide-gt-sm="" aria-label="Toggle Menu">
+                        <md-icon md-svg-src="assets/svg/menu.svg" class="ng-scope" aria-hidden="true"
+                                 style="padding-top: 5px;"></md-icon>
+                        <div class="md-ripple-container"></div>
+                    </button>
                 </div>
             </div>
         </div>
     </div>
-
-    <div ng-view style="height:100%"></div>
+    <div>
+        <div ng-view style="height:100%"></div>
+    </div>
 </div>
 
 </body>
