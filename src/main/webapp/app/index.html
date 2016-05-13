@@ -67,7 +67,7 @@
         </md-list>
 </md-sidenav>
 
-<div id="main" flex="100" ng-controller="SinistreController as sc" tabIndex="-1" role="main">
+<div id="main" layout="column" layout-fill flex="100" ng-controller="SinistreController as sc" tabIndex="-1" role="main">
     <div>
         <div layout="row">
             <div flex="0" flex-gt-sm="25">&nbsp;</div>
@@ -96,13 +96,13 @@
         </div>
     </div>
 
-    <div>
-        <div ng-view></div>
+    <div flex layout="row">
+        <div flex ng-view layout-fill></div>
     </div>
 
-    <div>
-        <div layout="row" layout-align="center end">
-            &copy; die Mobiliar 2016
+    <div flex>
+        <div flex layout="row" layout-align="center end">
+            &copy; die Mobiliar 2016 - Challenge Days
         </div>
     </div>
 

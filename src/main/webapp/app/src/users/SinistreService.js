@@ -111,6 +111,7 @@
                     'desc': 'Un voleur s\'introduit chez vous par effraction (briser une vitre, enfoncer une porte, etc.) et dérobe des biens de l\'inventaire du ménage.',
                     'type': 'vol',
                     'covered': true,
+                    'other': false,
                     'coverText': 'Vous êtes actuellement couvert pour le vol par effraction.',
                     'contracts': [
                         {
@@ -147,6 +148,7 @@
                     'desc': 'Lors d\'un déplacement vous vous faites volez un objet de l\'inventaire du ménage.',
                     'type': 'vol',
                     'covered': false,
+                    'other': false,
                     'coverText': 'Vous êtes actuellement couvert pour le vol simple, le détroussement ainsi que le vol par effraction. Il vous est cependant possible de souscrire à une option liée à votre assurance ménage.',
                     'contracts': [
                         {
@@ -193,7 +195,7 @@
                             ]
                         }
                     ],
-                    'insuranceAvailable': []
+                    'insuranceAvailable': false
                 },
                 {
                     'name': 'Annulation de vacances',
@@ -201,6 +203,7 @@
                     'coverText': '',
                     'type': 'vol',
                     'covered': false,
+                    'other': false,
                     'contracts': [],
                     'insuranceAvailable': [
                         {
