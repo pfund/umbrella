@@ -43,7 +43,7 @@
         </md-progress-circular>
 
         <!-- Tous les cas non gérés -->
-        <div ng-if="ctrl.detail && ctrl.detail.other" layout-fill layout-padding>
+        <div ng-if="ctrl.detail && ctrl.detail.other" layout-padding>
 
                 <md-card style="display:inline-block" layout-fill>
                     <md-card-header>
@@ -91,7 +91,7 @@
         </div>
 
         <!-- Cas 1 : couvert par l'assurance ménage-->
-        <div ng-if="ctrl.detail && !ctrl.detail.other  && ctrl.detail.covered" layout-fill layout-padding>
+        <div ng-if="ctrl.detail && !ctrl.detail.other  && ctrl.detail.covered" layout-padding>
 
             <md-card layout-fill style="display:inline-block">
                 <md-card-header>
@@ -204,7 +204,7 @@
         </div>
 
         <!-- Cas 2 : pas couvert -->
-        <div layout-fill layout-padding
+        <div layout-padding
              ng-if="ctrl.detail && !ctrl.detail.other && !ctrl.detail.covered && ctrl.detail.contracts && !ctrl.detail.insuranceAvailable">
             <md-card layout-fill style="display:inline-block">
                 <md-card-header>
@@ -319,7 +319,7 @@
 
         <!-- Cas 3 : souscrire à une assurance -->
         <md-content ng-show="ctrl.detail && !ctrl.detail.other && !ctrl.detail.covered && ctrl.detail.insuranceAvailable"
-                    ng-repeat="insurance in ctrl.detail.insuranceAvailable" layout="row" layout-fill layout-padding>
+                    ng-repeat="insurance in ctrl.detail.insuranceAvailable" layout="row" layout-padding>
 
                 <md-card layout-fill style="display:inline-block">
                     <md-card-header>
