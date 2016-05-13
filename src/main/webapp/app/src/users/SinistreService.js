@@ -15,6 +15,14 @@
     function SinistreService($q, $timeout, $http) {
         var sinistres = [
                 {
+                    'name': 'Parking', 'type': 'voiture',
+                    'other': true
+                },
+                {
+                    'name': 'Accident de la route', 'type': 'voiture',
+                    'other': true
+                },
+                {
                     'name': 'Dommages corp./matériels entrepr. du bâtiment', 'type': 'dommages',
                     'other': true
                 },
@@ -126,17 +134,7 @@
                                 {
                                     'name': 'Assurance ménage',
                                     'prime': '30CHF',
-                                    'franchise': {id: 400, name: 400},
-                                    'franchisesAvailable': [
-                                        {
-                                            id: 100,
-                                            name: 100
-                                        },
-                                        {
-                                            id: 400,
-                                            name: 400
-                                        }
-                                    ],
+                                    'franchise': 400,
                                     'sommeAssurance': 100000
                                 }
                             ]
@@ -177,10 +175,7 @@
                                             name: 400
                                         }
                                     ],
-                                    'sommeAssurance': {
-                                        id: 1000,
-                                        name: '1000'
-                                    },
+                                    'sommeAssurance': 1000,
                                     'sommesAssuranceAvailable': [
                                         {
                                             id: 1000,

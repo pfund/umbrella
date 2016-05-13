@@ -32,24 +32,23 @@
     <div flex="0" flex-gt-sm="33"></div>
 </div>
 
-<div flex layout="row" ng-cloak>
+<div layout="row" ng-cloak layout-align="center center">
 
-    <div flex="0" flex-gt-sm="5" flex-gt-md="20"></div>
+    <div flex="0" flex-gt-sm="5" flex-gt-md="70"></div>
 
-    <md-content flex layout="column" ng-show="ctrl.selectedItem">
+    <md-content layout="column" layout-align="center center" layout-fill ng-show="ctrl.selectedItem" style="height:100%;overflow:hidden;">
 
         <md-progress-circular md-mode="indeterminate"
                               ng-show="ctrl.selectedItem && !ctrl.detail">
         </md-progress-circular>
 
         <!-- Tous les cas non gérés -->
-        <div flex ng-if="ctrl.detail && ctrl.detail.other">
+        <div ng-if="ctrl.detail && ctrl.detail.other" layout-fill>
 
-            <md-content flex>
-                <md-card>
+                <md-card layout-fill style="display:inline-block">
                     <md-card-header>
                         <md-card-header-text>
-                            <md-content flex layout="row">
+                            <md-content layout="row">
                                 <md-content>
 
                                     <div class="md-headline">
@@ -61,7 +60,7 @@
 
                                 </md-content>
                             </md-content>
-                            <md-content flex>
+                            <md-content>
                                     <span class="md-flex" style="color:#880000">
                                         <md-icon md-svg-icon="notok"></md-icon>
                                         Ce cas n'est pas géré !
@@ -89,18 +88,15 @@
                         </md-card-title-text>
                     </md-card-title>
                 </md-card>
-
-            </md-content>
-
         </div>
 
         <!-- Cas 1 : couvert par l'assurance ménage-->
-        <div ng-if="ctrl.detail && !ctrl.detail.other  && ctrl.detail.covered">
+        <div ng-if="ctrl.detail && !ctrl.detail.other  && ctrl.detail.covered" layout-fill>
 
-            <md-card>
+            <md-card layout-fill style="display:inline-block">
                 <md-card-header>
                     <md-card-header-text>
-                        <md-content flex layout="row">
+                        <md-content layout="row">
                             <md-content>
                                 <div class="md-headline">
                                     {{ctrl.selectedItem.name}}
@@ -148,7 +144,7 @@
                                 <md-list-item>
                                     <p> Prime </p>
 
-                                    <p> {{contract.prime}} CHF</p>
+                                    <p> {{contract.prime}}</p>
                                 </md-list-item>
 
                             </md-list>
@@ -156,28 +152,12 @@
                             <div ng-show="contract.options"
                                  ng-repeat="option in contract.options">
 
-                                <md-content layout-gt-sm="row" layout-padding ng-if="ctrl.detail">
+                                <md-content layout-gt-sm="column" layout-padding ng-if="ctrl.detail">
 
                                     <md-list>
 
                                         <md-subheader class="md-no-sticky">Modifier l'assurance</md-subheader>
 
-                                        <md-list-item>
-
-                                            <md-input-container>
-                                                <label>
-                                                    Franchise
-                                                </label>
-                                                <md-select ng-model="option.franchise"
-                                                           ng-model-options="{trackBy: '$value.id'}">
-                                                    <md-option ng-value="franchise"
-                                                               ng-repeat="franchise in option.franchisesAvailable">
-                                                        {{franchise.name}}
-                                                    </md-option>
-                                                </md-select>
-                                            </md-input-container>
-
-                                        </md-list-item>
                                         <md-list-item>
 
                                             <md-input-container>
@@ -189,6 +169,23 @@
                                             </md-input-container>
                                         </md-list-item>
 
+                                        <md-list-item>
+                                            <p>
+                                                <md-input-container>
+
+                                                    <label>
+                                                        Franchise
+                                                    </label>
+
+                                                    <input type="number" step="100" ng-model="option.franchise">
+
+                                                </md-input-container>
+                                            </p>
+                                            <p>
+                                                <md-slider ng-model="option.franchise" step="100" min="100" max="500">
+                                                </md-slider>
+                                            </p>
+                                        </md-list-item>
                                     </md-list>
 
 
@@ -207,12 +204,12 @@
         </div>
 
         <!-- Cas 2 : pas couvert -->
-        <div flex
+        <div layout-fill
              ng-if="ctrl.detail && !ctrl.detail.other && !ctrl.detail.covered && ctrl.detail.contracts && !ctrl.detail.insuranceAvailable">
-            <md-card>
+            <md-card layout-fill style="display:inline-block">
                 <md-card-header>
                     <md-card-header-text>
-                        <md-content flex layout="row">
+                        <md-content layout="row">
                             <md-content>
 
                                 <div class="md-headline">
@@ -224,7 +221,7 @@
 
                             </md-content>
                         </md-content>
-                        <md-content flex>
+                        <md-content>
                                     <span class="md-flex" style="color:#880000">
                                         <md-icon md-svg-icon="notok"></md-icon>
                                         Vous n'êtes pas couvert pour ce risque !
@@ -235,7 +232,7 @@
 
                 <md-card-title>
                     <md-card-title-text>
-                        <md-content flex ng-show="ctrl.detail.contracts" ng-repeat="contract in ctrl.detail.contracts"
+                        <md-content ng-show="ctrl.detail.contracts" ng-repeat="contract in ctrl.detail.contracts"
                                     layout="column">
                             <md-list>
                                 <md-subheader class="md-no-sticky">{{contract.name}}</md-subheader>
@@ -263,7 +260,7 @@
                                 <md-list-item>
                                     <p> Prime </p>
 
-                                    <p> {{contract.prime}} CHF</p>
+                                    <p> {{contract.prime}}</p>
                                 </md-list-item>
 
                             </md-list>
@@ -281,15 +278,14 @@
                                                 <label>
                                                     Somme_assurée
                                                 </label>
-                                                <md-select ng-model="option.sommeAssurance"
-                                                           ng-model-options="{trackBy: '$value.id'}">
-                                                    <md-option ng-value="somme"
-                                                               ng-repeat="somme in option.sommesAssuranceAvailable">
-                                                        {{somme.name}}
-                                                        CHF
-                                                    </md-option>
-                                                </md-select>
+
+                                                <input type="number" step="100" ng-model="option.sommeAssurance">
+
                                             </md-input-container>
+                                        </p>
+                                        <p>
+                                            <md-slider ng-model="option.sommeAssurance" step="1000" min="1000" max="2000">
+                                            </md-slider>
                                         </p>
                                     </md-list-item>
                                     <md-list-item>
@@ -322,15 +318,13 @@
         </div>
 
         <!-- Cas 3 : souscrire à une assurance -->
-        <md-content flex
-                    ng-show="ctrl.detail && !ctrl.detail.other && !ctrl.detail.covered && ctrl.detail.insuranceAvailable"
-                    ng-repeat="insurance in ctrl.detail.insuranceAvailable" layout="row">
+        <md-content ng-show="ctrl.detail && !ctrl.detail.other && !ctrl.detail.covered && ctrl.detail.insuranceAvailable"
+                    ng-repeat="insurance in ctrl.detail.insuranceAvailable" layout="row" layout-fill>
 
-            <md-content flex>
-                <md-card>
+                <md-card layout-fill style="display:inline-block">
                     <md-card-header>
                         <md-card-header-text>
-                            <md-content flex layout="row">
+                            <md-content layout="row">
                                 <md-content>
 
                                     <div class="md-headline">
@@ -342,7 +336,7 @@
 
                                 </md-content>
                             </md-content>
-                            <md-content flex>
+                            <md-content>
                                     <span class="md-flex" style="color:#880000">
                                         <md-icon md-svg-icon="notok"></md-icon>
                                         Vous n'êtes pas couvert pour ce risque !
@@ -351,7 +345,7 @@
                         </md-card-header-text>
                     </md-card-header>
 
-                    <img ng-src="assets/img/voyage.jpg">
+                    <img ng-src="assets/img/voyage.jpg" style="max-width:400px">
                     <md-card-title>
                         <md-card-title-text>
                             <span class="md-headline">{{insurance.name}}</span>
@@ -364,9 +358,8 @@
                     </md-card-actions>
                 </md-card>
 
-            </md-content>
         </md-content>
     </md-content>
 
-    <div flex="0" flex-gt-sm="5" flex-gt-md="20"></div>
+    <div flex="0" flex-gt-sm="5" flex-gt-md="70"></div>
 </div>

@@ -26,7 +26,7 @@
 
                 .icon("ambulance", "./assets/svg/assurances/ambulance.svg", 512)
                 .icon("dommages", "./assets/svg/assurances/dommages.svg", 512)
-                .icon("home", "./assets/svg/assurances/vol.svg", 512)
+                .icon("vol", "./assets/svg/assurances/vol.svg", 512)
                 .icon("juridique", "./assets/svg/assurances/juridique.svg", 512)
                 .icon("medical", "./assets/svg/assurances/medical.svg", 512)
                 .icon("placement", "./assets/svg/assurances/placement.svg", 512)
