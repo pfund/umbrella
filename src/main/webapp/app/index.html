@@ -43,7 +43,7 @@
 
 </head>
 
-<body ng-app="starterApp" ng-cloak ng-controller="DemoCtrl as ctrl">
+<body ng-app="starterApp" ng-cloak ng-controller="DemoCtrl as ctrl" layout="column">
 
 <md-sidenav hide-gt-sm class="md-sidenav-right md-whiteframe-z2" md-component-id="right">
     <md-toolbar class="md-toolbar-tools <md-theme-light">
@@ -69,7 +69,8 @@
     </md-list>
 </md-sidenav>
 
-<div id="main" flex="100" ng-controller="SinistreController as sc" tabIndex="-1" role="main">
+<div id="main" layout="column" layout-fill flex="grow" ng-controller="SinistreController as sc" tabIndex="-1"
+     role="main" style="height:100%">
     <div>
         <div layout="row">
             <div flex="0" flex-gt-sm="25">&nbsp;</div>

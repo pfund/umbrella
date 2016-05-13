@@ -34,7 +34,7 @@
 
 <div layout="row" ng-cloak layout-align="center center">
 
-    <div flex="0" flex-gt-sm="5" flex-gt-md="70"></div>
+    <div flex="0" flex-gt-sm="15" flex-gt-md="30"></div>
 
     <md-content layout="column" layout-align="center center" layout-fill ng-show="ctrl.selectedItem" style="height:100%;overflow:hidden;">
 
@@ -43,7 +43,7 @@
         </md-progress-circular>
 
         <!-- Tous les cas non gérés -->
-        <div ng-if="ctrl.detail && ctrl.detail.other" layout-padding>
+        <div ng-if="ctrl.detail && ctrl.detail.other" layout-fill layout-padding>
 
                 <md-card style="display:inline-block" layout-fill>
                     <md-card-header>
@@ -91,7 +91,7 @@
         </div>
 
         <!-- Cas 1 : couvert par l'assurance ménage-->
-        <div ng-if="ctrl.detail && !ctrl.detail.other  && ctrl.detail.covered" layout-padding>
+        <div ng-if="ctrl.detail && !ctrl.detail.other  && ctrl.detail.covered" layout-fill layout-padding>
 
             <md-card layout-fill style="display:inline-block">
                 <md-card-header>
@@ -204,7 +204,7 @@
         </div>
 
         <!-- Cas 2 : pas couvert -->
-        <div layout-padding
+        <div layout-fill layout-padding
              ng-if="ctrl.detail && !ctrl.detail.other && !ctrl.detail.covered && ctrl.detail.contracts && !ctrl.detail.insuranceAvailable">
             <md-card layout-fill style="display:inline-block">
                 <md-card-header>
@@ -319,7 +319,7 @@
 
         <!-- Cas 3 : souscrire à une assurance -->
         <md-content ng-show="ctrl.detail && !ctrl.detail.other && !ctrl.detail.covered && ctrl.detail.insuranceAvailable"
-                    ng-repeat="insurance in ctrl.detail.insuranceAvailable" layout="row" layout-padding>
+                    ng-repeat="insurance in ctrl.detail.insuranceAvailable" layout="row" layout-fill layout-padding>
 
                 <md-card layout-fill style="display:inline-block">
                     <md-card-header>
@@ -361,7 +361,7 @@
         </md-content>
     </md-content>
 
-    <div flex="0" flex-gt-sm="5" flex-gt-md="70"></div>
+    <div flex="0" flex-gt-sm="15" flex-gt-md="30"></div>
 </div>
 
 <div layout-align="center end" style="max-height:20px;">
